@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Walimatul · Studio Undangan Akikah & Pernikahan</title>
+<title>Walimatul · Studio Undangan Digital</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&family=Amiri:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -68,8 +68,10 @@ body.guest .panel{display:none}
 .hint{font:500 11.5px/1.55 Manrope;color:var(--usoft);margin:12px 0 0;padding-left:10px;border-left:2px solid var(--line2)}
 .lbl{font:800 10.5px Manrope;letter-spacing:.14em;text-transform:uppercase;color:var(--usoft);margin:14px 0 8px}
 
+/* Pemilih jenis: 5 tombol */
 .seg{display:grid;grid-template-columns:1fr 1fr;background:#e9e0c9;border:1px solid var(--line2);border-radius:11px;padding:4px;gap:4px}
-.seg button{font:600 13px Manrope;padding:9px 6px;border-radius:8px;background:transparent;border:0;color:var(--usoft);cursor:pointer;transition:.15s}
+.seg button{font:600 12.5px Manrope;padding:9px 6px;border-radius:8px;background:transparent;border:0;color:var(--usoft);cursor:pointer;transition:.15s}
+.seg button:last-child{grid-column:1/-1}
 .seg button:hover{color:var(--uink)}
 .seg button.on{background:var(--uaccent);color:#f2ead6;box-shadow:0 2px 8px rgba(20,18,8,.2)}
 .seg button:active{transform:scale(.97)}
@@ -90,10 +92,16 @@ body.guest .panel{display:none}
 .f input,.f select,.f textarea{width:100%;font:500 14px Manrope;color:var(--uink);background:#fffcf3;border:1px solid var(--line2);border-radius:9px;padding:9px 11px;outline:none;transition:.15s;resize:vertical}
 .f input:focus,.f select:focus,.f textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(150,112,45,.15)}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-body[data-type="akikah"] .f-nikah{display:none}
-body[data-type="nikah"]  .f-akikah{display:none}
+/* Kolom khusus per jenis undangan */
+.f-type{display:none}
+body[data-type="akikah"] .f-type.f-akikah,
+body[data-type="nikah"] .f-type.f-nikah,
+body[data-type="khitanan"] .f-type.f-khitanan,
+body[data-type="ulangtahun"] .f-type.f-ulangtahun,
+body[data-type="syukuran"] .f-type.f-syukuran{display:block}
+body[data-type="nikah"] .frow.f-nikah{display:grid}
+body[data-type="nikah"] .f-single{display:none}
 
-/* ===== BUKU TAMU (versi aktif) ===== */
 .rs-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
 .rs-stats div{background:#fffcf3;border:1px solid var(--line2);border-radius:10px;padding:10px 8px;text-align:center}
 .rs-stats b{display:block;font:400 22px Marcellus;color:var(--uink)}
@@ -120,7 +128,7 @@ body[data-type="nikah"]  .f-akikah{display:none}
 .rs-edit-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .rs-edit-btns{display:flex;gap:8px}
 .rs-empty{font:italic 500 13px "Cormorant Garamond";color:var(--usoft);cursor:default}
-.rs-empty:hover{border-color:var(--line2)!important;background:#fffcf3!important}
+.rs-empty:hover{border-color:var(--line2)!important;background:none!important}
 .mini-row{display:flex;gap:8px;margin-top:10px}
 .mini-row .btn{flex:1}
 
@@ -181,15 +189,23 @@ body.guest .inv{width:min(760px,100%)}
 .corner{position:absolute;width:38px;height:38px;color:var(--accent);z-index:1}
 .c-tl{top:14px;left:14px}.c-tr{top:14px;right:14px;transform:rotate(90deg)}
 .c-bl{bottom:14px;left:14px;transform:rotate(-90deg)}.c-br{bottom:14px;right:14px;transform:rotate(180deg)}
-.bism{font:400 27px/1.4 Amiri;color:var(--accent);margin:8px 0 16px}
+.bism{display:none;font:400 27px/1.4 Amiri;color:var(--accent);margin:8px 0 16px}
+body[data-type="akikah"] .bism,body[data-type="nikah"] .bism,body[data-type="khitanan"] .bism,body[data-type="syukuran"] .bism{display:block}
 .eyebrow{font:400 15px Marcellus;letter-spacing:.42em;text-transform:uppercase;color:var(--ink);margin:0 0 4px;padding-left:.42em}
 .divider{color:var(--accent);margin:18px auto;width:230px}
 .divider svg{display:block;width:100%}
 .intro{font:italic 500 17px/1.6 "Cormorant Garamond";color:var(--soft);max-width:46ch;margin:6px auto 24px}
 .names{margin:24px 0}
 .script{font:400 48px/1.15 "Pinyon Script";font-size:clamp(42px,6vw,56px);color:var(--ink);margin:6px 0 2px}
+.script-sm{font-size:clamp(32px,4.6vw,44px)}
 .parents{font:italic 500 16.5px "Cormorant Garamond";color:var(--soft);margin:0}
 .amp{font:400 30px "Pinyon Script";color:var(--accent);margin:12px 0 8px}
+.nm{display:none}
+body[data-type="nikah"] .nm-nikah{display:block}
+body[data-type="akikah"] .nm-akikah{display:block}
+body[data-type="khitanan"] .nm-khitanan{display:block}
+body[data-type="ulangtahun"] .nm-ulangtahun{display:block}
+body[data-type="syukuran"] .nm-syukuran{display:block}
 .countdown{margin:30px auto 26px;max-width:460px}
 .countdown.done b{color:var(--accent)}
 .countdown.off{opacity:.55}
@@ -204,10 +220,8 @@ body.guest .inv{width:min(760px,100%)}
 .times{font:500 16px "Cormorant Garamond";color:var(--soft);margin:0}
 .venue{font:400 18px Marcellus;color:var(--ink);margin:16px 0 0}
 .addr{font:italic 500 15px/1.55 "Cormorant Garamond";color:var(--soft);margin:3px auto 0;max-width:46ch}
-.quote,.doa{margin:30px auto 0;max-width:54ch;font:italic 500 16px/1.7 "Cormorant Garamond";color:var(--soft);padding-top:24px;border-top:1px solid var(--line);position:relative}
-.quote::before,.doa::before{content:"";position:absolute;top:-5px;left:50%;width:9px;height:9px;background:var(--accent);transform:translateX(-50%) rotate(45deg)}
-body[data-type="akikah"] .only-nikah{display:none!important}
-body[data-type="nikah"]  .only-akikah{display:none!important}
+.quote{display:block;margin:30px auto 0;max-width:54ch;font:italic 500 16px/1.7 "Cormorant Garamond";color:var(--soft);padding-top:24px;border-top:1px solid var(--line);position:relative}
+.quote::before{content:"";position:absolute;top:-5px;left:50%;width:9px;height:9px;background:var(--accent);transform:translateX(-50%) rotate(45deg)}
 
 .rsvp{margin:36px auto 8px;max-width:450px;border:1px solid var(--line);background:var(--wash);border-radius:14px;padding:22px 22px 20px;text-align:left}
 .rsvp-head{display:flex;gap:12px;align-items:center;color:var(--accent)}
@@ -282,7 +296,7 @@ body[data-type="nikah"]  .only-akikah{display:none!important}
 <body data-type="nikah">
 
 <noscript><div class="nojs-banner">JavaScript nonaktif di browser Anda — aplikasi ini membutuhkan JavaScript. Gunakan Google Chrome terbaru dan aktifkan JavaScript.</div></noscript>
-<div id="jsBadge"><i></i>Sistem aktif (v4)</div>
+<div id="jsBadge"><i></i>Sistem aktif (v5)</div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></symbol>
@@ -310,7 +324,7 @@ body[data-type="nikah"]  .only-akikah{display:none!important}
       <rect x="11.5" y="11.5" width="17" height="17"/>
       <rect x="11.5" y="11.5" width="17" height="17" transform="rotate(45 20 20)"/>
     </svg>
-    <div><b>WALIMATUL</b><span>Studio Undangan Akikah &amp; Pernikahan</span></div>
+    <div><b>WALIMATUL</b><span>Studio Undangan Digital</span></div>
   </div>
   <span class="chip" id="modeChip">Penyunting</span>
   <span class="clock" id="clock"></span>
@@ -327,6 +341,9 @@ body[data-type="nikah"]  .only-akikah{display:none!important}
       <div class="seg" id="segType">
         <button type="button" data-t="akikah" onclick="WA_pickType('akikah',this)">Akikah</button>
         <button type="button" data-t="nikah" class="on" onclick="WA_pickType('nikah',this)">Pernikahan</button>
+        <button type="button" data-t="khitanan" onclick="WA_pickType('khitanan',this)">Khitanan</button>
+        <button type="button" data-t="ulangtahun" onclick="WA_pickType('ulangtahun',this)">Ulang Tahun</button>
+        <button type="button" data-t="syukuran" onclick="WA_pickType('syukuran',this)">Syukuran</button>
       </div>
       <p class="lbl">Tema surat</p>
       <div class="themes" id="themes">
@@ -340,35 +357,59 @@ body[data-type="nikah"]  .only-akikah{display:none!important}
     <div class="sec">
       <h3><em>02</em> Detail Acara</h3>
       <div class="f"><label>Tanggal acara</label><input type="date" data-f="c_date"></div>
-      <div class="frow f-nikah">
+      <div class="frow f-type f-nikah">
         <div class="f"><label>Pukul akad</label><input type="time" data-f="n_akad"></div>
         <div class="f"><label>Pukul resepsi</label><input type="time" data-f="n_resepsi"></div>
       </div>
-      <div class="f f-akikah"><label>Pukul acara</label><input type="time" data-f="a_time"></div>
+      <div class="f f-single"><label>Pukul acara</label><input type="time" data-f="c_time"></div>
       <div class="f"><label>Tempat</label><input data-f="c_venue"></div>
       <div class="f"><label>Alamat lengkap</label><textarea rows="2" data-f="c_addr"></textarea></div>
 
-      <div class="f f-akikah"><label>Nama anak</label><input data-f="a_child"></div>
-      <div class="f f-akikah"><label>Sapaan</label>
-        <select data-f="a_sex"><option value="putri">Putri</option><option value="putra">Putra</option></select>
+      <div class="f-type f-akikah">
+        <div class="f"><label>Nama anak</label><input data-f="a_child"></div>
+        <div class="f"><label>Sapaan</label>
+          <select data-f="a_sex"><option value="putri">Putri</option><option value="putra">Putra</option></select>
+        </div>
+        <div class="frow">
+          <div class="f"><label>Nama ayah</label><input data-f="a_father"></div>
+          <div class="f"><label>Nama ibu</label><input data-f="a_mother"></div>
+        </div>
+        <div class="f"><label>Doa untuk anak</label><textarea rows="3" data-f="a_doa"></textarea></div>
       </div>
-      <div class="frow f-akikah">
-        <div class="f"><label>Nama ayah</label><input data-f="a_father"></div>
-        <div class="f"><label>Nama ibu</label><input data-f="a_mother"></div>
-      </div>
-      <div class="f f-akikah"><label>Doa untuk anak</label><textarea rows="3" data-f="a_doa"></textarea></div>
 
-      <div class="f f-nikah"><label>Nama mempelai pria</label><input data-f="n_groom"></div>
-      <div class="frow f-nikah">
-        <div class="f"><label>Putra dari (ayah)</label><input data-f="n_gfather"></div>
-        <div class="f"><label>Nama ibu</label><input data-f="n_gmother"></div>
+      <div class="f-type f-khitanan">
+        <div class="f"><label>Nama anak</label><input data-f="k_child"></div>
+        <div class="frow">
+          <div class="f"><label>Nama ayah</label><input data-f="k_father"></div>
+          <div class="f"><label>Nama ibu</label><input data-f="k_mother"></div>
+        </div>
+        <div class="f"><label>Doa &amp; pesan</label><textarea rows="3" data-f="k_msg"></textarea></div>
       </div>
-      <div class="f f-nikah"><label>Nama mempelai wanita</label><input data-f="n_bride"></div>
-      <div class="frow f-nikah">
-        <div class="f"><label>Putri dari (ayah)</label><input data-f="n_bfather"></div>
-        <div class="f"><label>Nama ibu</label><input data-f="n_bmother"></div>
+
+      <div class="f-type f-nikah">
+        <div class="f"><label>Nama mempelai pria</label><input data-f="n_groom"></div>
+        <div class="frow">
+          <div class="f"><label>Putra dari (ayah)</label><input data-f="n_gfather"></div>
+          <div class="f"><label>Nama ibu</label><input data-f="n_gmother"></div>
+        </div>
+        <div class="f"><label>Nama mempelai wanita</label><input data-f="n_bride"></div>
+        <div class="frow">
+          <div class="f"><label>Putri dari (ayah)</label><input data-f="n_bfather"></div>
+          <div class="f"><label>Nama ibu</label><input data-f="n_bmother"></div>
+        </div>
+        <div class="f"><label>Ayat / kutipan</label><textarea rows="4" data-f="n_quote"></textarea></div>
       </div>
-      <div class="f f-nikah"><label>Ayat / kutipan</label><textarea rows="4" data-f="n_quote"></textarea></div>
+
+      <div class="f-type f-ulangtahun">
+        <div class="f"><label>Nama yang berulang tahun</label><input data-f="u_name"></div>
+        <div class="f"><label>Usia ke-</label><input type="number" min="1" max="120" data-f="u_age"></div>
+        <div class="f"><label>Ucapan / pesan</label><textarea rows="3" data-f="u_msg"></textarea></div>
+      </div>
+
+      <div class="f-type f-syukuran">
+        <div class="f"><label>Jenis syukuran</label><input data-f="s_event" placeholder="cth. Rumah Baru, Kelahiran, Panen Raya"></div>
+        <div class="f"><label>Ucapan syukur</label><textarea rows="3" data-f="s_msg"></textarea></div>
+      </div>
     </div>
 
     <div class="sec">
@@ -378,7 +419,6 @@ body[data-type="nikah"]  .only-akikah{display:none!important}
       <p class="hint">Kosongkan nama tamu sebelum membagikan, agar sapaan pada tautan yang tersebar bersifat umum.</p>
     </div>
 
-    <!-- ===== BUKU TAMU AKTIF ===== -->
     <div class="sec">
       <h3><em>04</em> Buku Tamu</h3>
       <div class="rs-stats">
@@ -464,16 +504,32 @@ body[data-type="nikah"]  .only-akikah{display:none!important}
 
           <p class="intro" id="lIntro"></p>
 
-          <div class="names only-nikah">
+          <div class="names nm nm-nikah">
             <h2 class="script" id="lGroom"></h2>
             <p class="parents" id="lGPar"></p>
             <div class="amp">&amp;</div>
             <h2 class="script" id="lBride"></h2>
             <p class="parents" id="lBPar"></p>
           </div>
-          <div class="names only-akikah">
+
+          <div class="names nm nm-akikah">
             <h2 class="script" id="lChild"></h2>
             <p class="parents" id="lChildPar"></p>
+          </div>
+
+          <div class="names nm nm-khitanan">
+            <h2 class="script" id="lKChild"></h2>
+            <p class="parents" id="lKPar"></p>
+          </div>
+
+          <div class="names nm nm-ulangtahun">
+            <h2 class="script" id="lUName"></h2>
+            <p class="parents" id="lUAge"></p>
+          </div>
+
+          <div class="names nm nm-syukuran">
+            <p class="parents" style="margin-bottom:0">Syukuran</p>
+            <h2 class="script script-sm" id="lEvent"></h2>
           </div>
 
           <div class="divider"><svg viewBox="0 0 230 14" fill="none"><line x1="0" y1="7" x2="94" y2="7" stroke="currentColor" stroke-width="1"/><line x1="136" y1="7" x2="230" y2="7" stroke="currentColor" stroke-width="1"/><circle cx="103" cy="7" r="1.4" fill="currentColor"/><circle cx="127" cy="7" r="1.4" fill="currentColor"/><g fill="currentColor"><rect x="111" y="3" width="8" height="8"/><rect x="111" y="3" width="8" height="8" transform="rotate(45 115 7)"/></g></svg></div>
@@ -489,13 +545,11 @@ body[data-type="nikah"]  .only-akikah{display:none!important}
           </section>
 
           <p class="day" id="lDay"></p>
-          <p class="times only-nikah" id="lTimesN"></p>
-          <p class="times only-akikah" id="lTimesA"></p>
+          <p class="times" id="lTimes"></p>
           <p class="venue" id="lVenue"></p>
           <p class="addr" id="lAddr"></p>
 
-          <blockquote class="quote only-nikah" id="lQuote" style="margin-left:auto;margin-right:auto"></blockquote>
-          <p class="doa only-akikah" id="lDoa" style="margin-left:auto;margin-right:auto"></p>
+          <blockquote class="quote" id="lMsg" style="margin-left:auto;margin-right:auto"></blockquote>
 
           <div class="rsvp">
             <div class="rsvp-head">
@@ -538,7 +592,7 @@ body[data-type="nikah"]  .only-akikah{display:none!important}
   <div class="modal">
     <header>
       <h3><svg class="ic"><use href="#i-share" xlink:href="#i-share"></use></svg> Pusat Bagikan</h3>
-      <button type="button" class="icon-btn" onclick="WA_closeShare()"><svg class="ic"><use href="#i-x" xlink:href="#i-x"></use></button>
+      <button type="button" class="icon-btn" onclick="WA_closeShare()"><svg class="ic"><use href="#i-x" xlink:href="#i-x"></use></svg></button>
     </header>
     <p class="m-sub">Seluruh data undangan terbawa dalam tautan ini — penerima membukanya langsung di browser, tanpa server &amp; tanpa pendaftaran.</p>
     <div class="m-row">
@@ -582,13 +636,20 @@ var state={ type:'nikah', theme:'gading', guestMode:false };
 var DRAFT_KEY='walimatul_draft_v1', RSVP_KEY='walimatul_rsvp_v1';
 var TYPE_DESC={
   akikah:'Tanda syukur atas kelahiran sang buah hati — tahnik & doa bersama keluarga.',
-  nikah:'Dua keluarga, satu harapan — akad dan resepsi dalam satu rangkaian.'
+  nikah:'Dua keluarga, satu harapan — akad dan resepsi dalam satu rangkaian.',
+  khitanan:'Tanda syukur atas pertumbuhan sang putra — khitan & doa bersama keluarga.',
+  ulangtahun:'Hari ceria tahunan — rayakan bersama keluarga dan sahabat terdekat.',
+  syukuran:'Ucapan syukur atas nikmat & berkah — rumah baru, kelahiran, dan lainnya.'
 };
+var TYPE_NAME={akikah:'Akikah',nikah:'Pernikahan',khitanan:'Khitanan',ulangtahun:'Ulang Tahun',syukuran:'Syukuran'};
 
 function fieldEl(f){ return document.querySelector('[data-f="'+f+'"]'); }
 function val(f){ var el=fieldEl(f); return el? String(el.value).replace(/^\s+|\s+$/g,'') : ''; }
-var FIELD_IDS=['guest','c_date','c_venue','c_addr','c_host',
-  'a_child','a_sex','a_father','a_mother','a_time','a_doa',
+var FIELD_IDS=['guest','c_date','c_time','c_venue','c_addr','c_host',
+  'a_child','a_sex','a_father','a_mother','a_doa',
+  'k_child','k_father','k_mother','k_msg',
+  'u_name','u_age','u_msg',
+  's_event','s_msg',
   'n_groom','n_gfather','n_gmother','n_bride','n_bfather','n_bmother','n_akad','n_resepsi','n_quote'];
 function setFields(v){
   for(var i=0;i<FIELD_IDS.length;i++){ var f=FIELD_IDS[i], el=fieldEl(f); if(el&&v&&v[f]!=null) el.value=v[f]; }
@@ -606,7 +667,7 @@ function WA_pickType(t, btn){
   for(var i=0;i<btns.length;i++){ btns[i].className = (btns[i]===btn)?'on':''; }
   var d=document.getElementById('typeDesc'); if(d) d.textContent=TYPE_DESC[t]||'';
   document.body.setAttribute('data-type', t);
-  toast('Jenis undangan: '+(t==='akikah'?'Akikah':'Pernikahan'));
+  toast('Jenis undangan: '+(TYPE_NAME[t]||t));
   if(window.render) render();
 }
 function WA_pickTheme(th, btn){
@@ -648,7 +709,7 @@ function updateSealLabel(){
   lbl.innerHTML = open ? 'Tutup &amp; Segel Ulang' : 'Buka Segel';
 }
 
-/* --- BUKU TAMU: tambah, ubah, hapus, bersihkan, CSV --- */
+/* --- BUKU TAMU --- */
 function loadRsvps(){ try{ return JSON.parse(localStorage.getItem(RSVP_KEY))||[]; }catch(e){ return []; } }
 function saveRsvps(a){ try{ localStorage.setItem(RSVP_KEY, JSON.stringify(a)); }catch(e){} }
 
@@ -675,7 +736,6 @@ function WA_addGuest(){
   if(window.buildLink) buildLink();
   toast('Tamu ditambahkan: '+name);
 }
-
 function WA_editRsvp(id){ editingId=id; WA_renderRsvpPanel(); }
 function WA_cancelEdit(){ editingId=null; WA_renderRsvpPanel(); }
 
@@ -696,7 +756,6 @@ function WA_saveRsvpEdit(id){
   if(window.buildLink) buildLink();
   toast('Perubahan tamu disimpan');
 }
-
 function WA_delRsvp(id){
   var rs=loadRsvps(), out=[], i;
   for(i=0;i<rs.length;i++){ if(String(rs[i].id)!==String(id)) out.push(rs[i]); }
@@ -706,7 +765,6 @@ function WA_delRsvp(id){
   if(window.buildLink) buildLink();
   toast('Entri dihapus');
 }
-
 function WA_clearRsvp(btn){
   var rs=loadRsvps();
   if(!rs.length){ toast('Buku tamu masih kosong'); return; }
@@ -729,7 +787,6 @@ function WA_clearRsvp(btn){
     },2600);
   }
 }
-
 function WA_exportCsv(){
   var rs=loadRsvps();
   if(!rs.length){ toast('Belum ada data untuk diunduh'); return; }
@@ -754,13 +811,11 @@ function WA_exportCsv(){
   setTimeout(function(){ URL.revokeObjectURL(a.href); },4000);
   toast('Buku tamu diunduh (CSV)');
 }
-
 function countOpts(sel){
   var out='';
   for(var k=1;k<=5;k++){ out+='<option value="'+k+'"'+(k===sel?' selected':'')+'>'+k+' orang</option>'; }
   return out;
 }
-
 function WA_renderRsvpPanel(){
   var rs=loadRsvps(), coming=[], i, sum=0;
   for(i=0;i<rs.length;i++){ if(rs[i].att==='hadir') coming.push(rs[i]); }
@@ -843,7 +898,7 @@ function WA_submitRsvp(ev, form){
   if(done){
     done.innerHTML='<svg class="ic ic-lg"><use href="#i-check-circle" xlink:href="#i-check-circle"></use></svg><div>'
       +(att==='hadir'
-        ? 'Jazakumullahu khairan, <b>'+esc(name)+'</b>! Kehadiran Anda ('+rec.count+' orang) telah kami catat. Sampai jumpa di hari bahagia.'
+        ? 'Terima kasih, <b>'+esc(name)+'</b>! Kehadiran Anda ('+rec.count+' orang) telah kami catat. Sampai jumpa di hari bahagia.'
         : 'Terima kasih, <b>'+esc(name)+'</b>. Doa terbaik Anda sudah lebih dari cukup bagi kami.')
       +'<br><button type="button" onclick="WA_rsvpAgain()">Perbarui jawaban</button></div>';
     done.removeAttribute('hidden');
@@ -863,7 +918,7 @@ function clockTick(){
   el.textContent=HARI[d.getDay()]+', '+d.getDate()+' '+BULAN[d.getMonth()]+' \u00B7 '+p2(d.getHours())+':'+p2(d.getMinutes())+':'+p2(d.getSeconds());
 }
 
-/* Ikat kolom form ke pratinjau langsung + tampilkan lencana diagnosis */
+/* Ikat kolom form ke pratinjau langsung + lencana diagnosis */
 (function(){
   try{
     var fields=document.querySelectorAll('[data-f]');
@@ -883,6 +938,17 @@ function clockTick(){
 function fmtT(t){ return t? t.split(':').join('.') : '\u2014'; }
 function setTxt(id, s){ var el=document.getElementById(id); if(el) el.textContent=s; }
 
+var TYPE_TITLE={akikah:'Undangan Akikah',nikah:'Undangan Pernikahan',khitanan:'Undangan Khitanan',ulangtahun:'Undangan Ulang Tahun',syukuran:'Undangan Syukuran'};
+var TYPE_INTRO={
+  akikah:'Alhamdulillah, dengan penuh rasa syukur atas karunia-Nya, kami bermaksud menyelenggarakan syukuran akikah putra/putri tercinta kami:',
+  nikah:'Dengan memohon rahmat dan ridha Allah Subhanahu wa Ta\u2019ala, kami bermaksud menyelenggarakan pernikahan putra-putri kami:',
+  khitanan:'Alhamdulillah, dengan memanjatkan puji syukur ke hadirat Allah SWT, kami bermaksud menyelenggarakan syukuran khitanan putra tercinta kami:',
+  ulangtahun:'Dengan penuh sukacita dan rasa syukur, kami mengundang Bapak/Ibu/Saudara/i untuk merayakan bersama kami:',
+  syukuran:'Dengan memanjatkan puji syukur ke hadirat Allah SWT atas segala rahmat dan karunia-Nya, kami sekeluarga bermaksud menyelenggarakan:'
+};
+var CD_LABEL={akikah:'Menghitung Hari Bahagia',nikah:'Menghitung Hari Bahagia',khitanan:'Menghitung Hari Gembira',ulangtahun:'Menghitung Hari Ceria',syukuran:'Menghitung Hari Syukur'};
+var CD_DONE={akikah:'Alhamdulillah, acara telah berlangsung',nikah:'Alhamdulillah, acara telah berlangsung',khitanan:'Alhamdulillah, acara telah berlangsung',ulangtahun:'Selamat ulang tahun! Acara telah berlangsung',syukuran:'Alhamdulillah, acara telah berlangsung'};
+
 function dayText(){
   var d=val('c_date'); if(!d) return '\u2014';
   var p=d.split('-');
@@ -890,16 +956,25 @@ function dayText(){
   if(isNaN(dt.getTime())) return '\u2014';
   return HARI[dt.getDay()]+', '+dt.getDate()+' '+BULAN[dt.getMonth()]+' '+dt.getFullYear();
 }
-function mainTime(){ return state.type==='akikah' ? (val('a_time')||'09:00') : (val('n_akad')||'08:00'); }
+function mainTime(){ return state.type==='nikah' ? (val('n_akad')||'08:00') : (val('c_time')||'09:00'); }
 function getTarget(){
   var d=val('c_date'); if(!d) return null;
   var t=new Date(d+'T'+mainTime());
   return isNaN(t.getTime())? null : t;
 }
 function sealInitials(){
-  var s = state.type==='akikah' ? val('a_child') : (val('n_groom')+' '+val('n_bride'));
+  var s;
+  if(state.type==='nikah') s=val('n_groom')+' '+val('n_bride');
+  else if(state.type==='akikah') s=val('a_child');
+  else if(state.type==='khitanan') s=val('k_child');
+  else if(state.type==='ulangtahun') s=val('u_name');
+  else s=val('c_host')+' '+val('s_event');
   var w=s.split(/\s+/), out='';
-  for(var i=0;i<w.length && i<2;i++){ if(w[i]) out+=w[i].charAt(0); }
+  var skip={'keluarga':1,'besar':1,'dan':1,'&':1};
+  for(var i=0;i<w.length && out.length<2;i++){
+    var t=w[i].replace(/[^A-Za-z]/g,'');
+    if(t && !skip[t.toLowerCase()]) out+=t.charAt(0);
+  }
   return (out||'W').toUpperCase();
 }
 
@@ -912,28 +987,49 @@ function render(){
   setTxt('ecGuest', 'Kepada Yth. '+(g||'Sahabat Terhormat'));
   setTxt('sealInit', sealInitials());
   setTxt('pillGuest', 'Tamu: '+(g||'umum'));
-  if(state.type==='akikah'){
-    setTxt('lType','Undangan Akikah');
-    setTxt('lIntro','Alhamdulillah, dengan penuh rasa syukur atas karunia-Nya, kami bermaksud menyelenggarakan syukuran akikah putra/putri tercinta kami:');
-    setTxt('lChild', val('a_child')||'\u2014');
-    setTxt('lChildPar', (val('a_sex')==='putra'?'Putra':'Putri')+' tercinta dari pasangan Bapak '+(val('a_father')||'\u2014')+' & Ibu '+(val('a_mother')||'\u2014'));
-    setTxt('lTimesA','bertempat pada pukul '+fmtT(val('a_time'))+' \u2014 hingga selesai');
-    setTxt('lDoa', val('a_doa'));
-  } else {
-    setTxt('lType','Undangan Pernikahan');
-    setTxt('lIntro','Dengan memohon rahmat dan ridha Allah Subhanahu wa Ta\u2019ala, kami bermaksud menyelenggarakan pernikahan putra-putri kami:');
+  setTxt('lType', TYPE_TITLE[state.type]||'Undangan');
+  setTxt('lIntro', TYPE_INTRO[state.type]||'');
+
+  var times='';
+  if(state.type==='nikah'){
     setTxt('lGroom', val('n_groom')||'\u2014');
     setTxt('lGPar','Putra dari Bapak '+(val('n_gfather')||'\u2014')+' & Ibu '+(val('n_gmother')||'\u2014'));
     setTxt('lBride', val('n_bride')||'\u2014');
     setTxt('lBPar','Putri dari Bapak '+(val('n_bfather')||'\u2014')+' & Ibu '+(val('n_bmother')||'\u2014'));
-    setTxt('lTimesN','Akad pukul '+fmtT(val('n_akad'))+' \u00B7 Resepsi pukul '+fmtT(val('n_resepsi'))+' \u2014 hingga selesai');
-    setTxt('lQuote', val('n_quote'));
+    times='Akad pukul '+fmtT(val('n_akad'))+' \u00B7 Resepsi pukul '+fmtT(val('n_resepsi'))+' \u2014 hingga selesai';
+    setMsg(val('n_quote'));
+  } else if(state.type==='akikah'){
+    setTxt('lChild', val('a_child')||'\u2014');
+    setTxt('lChildPar', (val('a_sex')==='putra'?'Putra':'Putri')+' tercinta dari pasangan Bapak '+(val('a_father')||'\u2014')+' & Ibu '+(val('a_mother')||'\u2014'));
+    times='bertempat pada pukul '+fmtT(val('c_time'))+' \u2014 hingga selesai';
+    setMsg(val('a_doa'));
+  } else if(state.type==='khitanan'){
+    setTxt('lKChild', val('k_child')||'\u2014');
+    setTxt('lKPar','Putra tercinta dari pasangan Bapak '+(val('k_father')||'\u2014')+' & Ibu '+(val('k_mother')||'\u2014'));
+    times='bertempat pada pukul '+fmtT(val('c_time'))+' \u2014 hingga selesai';
+    setMsg(val('k_msg'));
+  } else if(state.type==='ulangtahun'){
+    setTxt('lUName', val('u_name')||'\u2014');
+    var age=val('u_age');
+    setTxt('lUAge', age? ('yang berulang tahun ke-'+age) : 'yang berulang tahun');
+    times='bertempat pada pukul '+fmtT(val('c_time'))+' \u2014 hingga selesai';
+    setMsg(val('u_msg'));
+  } else {
+    setTxt('lEvent', val('s_event')||'\u2014');
+    times='bertempat pada pukul '+fmtT(val('c_time'))+' \u2014 hingga selesai';
+    setMsg(val('s_msg'));
   }
+  setTxt('lTimes', times);
   setTxt('lDay', dayText());
   setTxt('lVenue', val('c_venue')||'\u2014');
   setTxt('lAddr', val('c_addr'));
   setTxt('lHost', val('c_host')||'\u2014');
   buildLink(); saveDraft();
+}
+function setMsg(txt){
+  var el=document.getElementById('lMsg'); if(!el) return;
+  el.textContent = txt||'';
+  el.style.display = txt? 'block' : 'none';
 }
 
 function b64e(s){ return btoa(unescape(encodeURIComponent(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); }
@@ -959,9 +1055,9 @@ function tick(){
   var tg=getTarget(), box=document.getElementById('cdBox'); if(!box) return;
   if(!tg){ setCd('\u2014','\u2014','\u2014','\u2014'); setTxt('cdLabel','Atur tanggal acara pada panel'); box.className='countdown off'; return; }
   var diff=tg.getTime()-(new Date()).getTime();
-  if(diff<=0){ setCd('0','0','0','0'); setTxt('cdLabel','Alhamdulillah, acara telah berlangsung'); box.className='countdown done'; return; }
+  if(diff<=0){ setCd('0','0','0','0'); setTxt('cdLabel', CD_DONE[state.type]||'Acara telah berlangsung'); box.className='countdown done'; return; }
   box.className='countdown';
-  setTxt('cdLabel','Menghitung Hari Bahagia');
+  setTxt('cdLabel', CD_LABEL[state.type]||'Menghitung Hari Bahagia');
   var d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000), m=Math.floor(diff%3600000/60000), s=Math.floor(diff%60000/1000);
   setCd(String(d), p2(h), p2(m), p2(s));
 }
@@ -976,11 +1072,21 @@ function setCd(d,h,m,s){
 }
 
 function waText(){
-  var link=LINK;
-  if(state.type==='akikah'){
-    return "Assalamu'alaikum warahmatullahi wabarakatuh.\n\nDengan penuh rasa syukur kepada Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri syukuran akikah putra/putri kami, "+(val('a_child')||'\u2014')+", insya Allah pada "+dayText()+", pukul "+fmtT(val('a_time'))+", bertempat di "+(val('c_venue')||'\u2014')+(val('c_addr')?', '+val('c_addr'):'')+".\n\nBuka undangan digital lengkap melalui tautan berikut:\n"+link+"\n\nMerupakan suatu kehormatan apabila Anda berkenan hadir memberikan doa restu. Terima kasih.";
+  var link=LINK, tempat=(val('c_venue')||'\u2014')+(val('c_addr')?', '+val('c_addr'):'');
+  if(state.type==='nikah'){
+    return "Assalamu'alaikum warahmatullahi wabarakatuh.\n\nDengan memohon rahmat dan ridha Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami:\n\n"+(val('n_groom')||'\u2014')+' & '+(val('n_bride')||'\u2014')+"\n"+dayText()+' \u00B7 pukul '+fmtT(val('n_akad'))+"\n"+tempat+"\n\nBuka undangan digital lengkap melalui tautan berikut:\n"+link+"\n\nMerupakan suatu kehormatan apabila Anda berkenan hadir memberikan doa restu. Terima kasih.";
   }
-  return "Assalamu'alaikum warahmatullahi wabarakatuh.\n\nDengan memohon rahmat dan ridha Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami:\n\n"+(val('n_groom')||'\u2014')+' & '+(val('n_bride')||'\u2014')+"\n"+dayText()+' \u00B7 pukul '+fmtT(val('n_akad'))+"\n"+(val('c_venue')||'\u2014')+(val('c_addr')?', '+val('c_addr'):'')+"\n\nBuka undangan digital lengkap melalui tautan berikut:\n"+link+"\n\nMerupakan suatu kehormatan apabila Anda berkenan hadir memberikan doa restu. Terima kasih.";
+  if(state.type==='akikah'){
+    return "Assalamu'alaikum warahmatullahi wabarakatuh.\n\nDengan penuh rasa syukur kepada Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri syukuran akikah putra/putri kami, "+(val('a_child')||'\u2014')+", insya Allah pada "+dayText()+", pukul "+fmtT(val('c_time'))+", bertempat di "+tempat+".\n\nBuka undangan digital lengkap melalui tautan berikut:\n"+link+"\n\nMerupakan suatu kehormatan apabila Anda berkenan hadir memberikan doa restu. Terima kasih.";
+  }
+  if(state.type==='khitanan'){
+    return "Assalamu'alaikum warahmatullahi wabarakatuh.\n\nAlhamdulillah, dengan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri syukuran khitanan putra kami, "+(val('k_child')||'\u2014')+", insya Allah pada "+dayText()+", pukul "+fmtT(val('c_time'))+", bertempat di "+tempat+".\n\nBuka undangan digital lengkap melalui tautan berikut:\n"+link+"\n\nMerupakan suatu kehormatan apabila Anda berkenan hadir memberikan doa restu. Terima kasih.";
+  }
+  if(state.type==='ulangtahun'){
+    var age=val('u_age');
+    return "Halo!\n\nDengan penuh sukacita, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri perayaan ulang tahun "+(val('u_name')||'\u2014')+(age?(' yang ke-'+age):'')+", pada "+dayText()+", pukul "+fmtT(val('c_time'))+", bertempat di "+tempat+".\n\nBuka undangan digital lengkap melalui tautan berikut:\n"+link+"\n\nKehadiran Anda adalah hadiah terindah bagi kami. Sampai jumpa!";
+  }
+  return "Assalamu'alaikum warahmatullahi wabarakatuh.\n\nDengan memanjatkan puji syukur ke hadirat Allah SWT, kami sekeluarga mengundang Bapak/Ibu/Saudara/i untuk menghadiri syukuran "+(val('s_event')||'\u2014')+", insya Allah pada "+dayText()+", pukul "+fmtT(val('c_time'))+", bertempat di "+tempat+".\n\nBuka undangan digital lengkap melalui tautan berikut:\n"+link+"\n\nMerupakan suatu kehormatan apabila Anda berkenan hadir memberikan doa restu. Terima kasih.";
 }
 function WA_shareWA(){ window.open('https://wa.me/?text='+encodeURIComponent(waText()),'_blank'); }
 function fallbackCopy(s){
@@ -999,16 +1105,22 @@ function WA_deviceShare(){
   if(navigator.share){ try{ navigator.share({title:'Undangan Digital', text:waText(), url:LINK}); }catch(e){} }
   else { fallbackCopy(LINK); toast('Berbagi langsung tak didukung \u2014 tautan tersalin'); }
 }
+function icsTitle(){
+  if(state.type==='nikah') return 'Pernikahan '+(val('n_groom')||'')+' & '+(val('n_bride')||'');
+  if(state.type==='akikah') return 'Akikah '+(val('a_child')||'');
+  if(state.type==='khitanan') return 'Khitanan '+(val('k_child')||'');
+  if(state.type==='ulangtahun'){ var a=val('u_age'); return 'Ulang Tahun '+(val('u_name')||'')+(a?(' ke-'+a):''); }
+  return 'Syukuran '+(val('s_event')||'');
+}
 function WA_makeICS(){
   var tg=getTarget();
   if(!tg){ toast('Isi tanggal acara terlebih dahulu'); return; }
   var end=new Date(tg.getTime()+3*3600000);
   function f(d){ return ''+d.getFullYear()+p2(d.getMonth()+1)+p2(d.getDate())+'T'+p2(d.getHours())+p2(d.getMinutes())+'00'; }
   function t(x){ return String(x==null?'':x).replace(/,/g,'\\,').replace(/;/g,'\\;'); }
-  var title = state.type==='akikah' ? ('Akikah '+val('a_child')) : ('Pernikahan '+val('n_groom')+' & '+val('n_bride'));
   var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Walimatul//Undangan Digital//ID','CALSCALE:GREGORIAN','BEGIN:VEVENT',
     'UID:'+(new Date()).getTime()+'@walimatul','DTSTAMP:'+f(new Date()),'DTSTART:'+f(tg),'DTEND:'+f(end),
-    'SUMMARY:'+t(title),'LOCATION:'+t(val('c_venue')+', '+val('c_addr')),
+    'SUMMARY:'+t(icsTitle()),'LOCATION:'+t(val('c_venue')+', '+val('c_addr')),
     'DESCRIPTION:'+t(waText()).replace(/\n/g,'\\n'),'END:VEVENT','END:VCALENDAR'].join('\r\n');
   var a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));
@@ -1073,23 +1185,36 @@ var ftur=new Date(); ftur.setTime((new Date()).getTime()+9*86400000);
 var DEF={
   guest:'',
   c_date: ftur.getFullYear()+'-'+p2(ftur.getMonth()+1)+'-'+p2(ftur.getDate()),
+  c_time:'09:00',
   c_venue:'Pendopo Agung Taman Sari', c_addr:'Jl. Cempaka No. 12, Yogyakarta',
   c_host:'Keluarga Besar Wijaya & Maheswara',
-  a_child:'Aisyah Nur Ramadhani', a_sex:'putri', a_father:'Ahmad Fauzi, S.Pd.', a_mother:'Siti Rahma', a_time:'09:00',
+  a_child:'Aisyah Nur Ramadhani', a_sex:'putri', a_father:'Ahmad Fauzi, S.Pd.', a_mother:'Siti Rahma',
   a_doa:'Ya Allah, jadikanlah anak kami sholeh/sholehah, penyejuk mata kedua orang tua, dan berkahilah ia di dunia dan akhirat. Aamiin yaa Rabbal \u2018aalamiin.',
+  k_child:'Hamza Alfarizi', k_father:'Ahmad Fauzi, S.Pd.', k_mother:'Siti Rahma',
+  k_msg:'Ya Allah, jadikanlah anak kami anak yang sholeh, sehat dan kuat, serta menjadi kebanggaan kedua orang tua. Aamiin.',
+  u_name:'Nadia Kirana', u_age:'7',
+  u_msg:'Terima kasih atas doa dan restunya. Kehadiran Anda adalah hadiah terindah bagi kami.',
+  s_event:'Rumah Baru',
+  s_msg:'Merupakan suatu kehormatan apabila Bapak/Ibu/Saudara/i berkenan hadir memberikan doa restu keberkahan.',
   n_groom:'Raka Adiwangsa', n_gfather:'Hendra Wijaya', n_gmother:'Ratna Sari',
   n_bride:'Kirana Maheswari', n_bfather:'Dedi Maheswara', n_bmother:"Lestari Nur'aini",
   n_akad:'08:00', n_resepsi:'11:00',
   n_quote:'\u201CDan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.\u201D \u2014 QS. Ar-R\u016Bm : 21'
 };
 
+/* Migrasi draf lama: a_time -> c_time */
+function migrate(d){
+  if(d && d.v && !d.v.c_time && d.v.a_time) d.v.c_time=d.v.a_time;
+  return d;
+}
+
 (function init(){
   tick(); setInterval(tick,300);
   var u=getParam('u');
   if(u){
     try{
-      var d=JSON.parse(b64d(u));
-      if(d.t) state.type=d.t;
+      var d=migrate(JSON.parse(b64d(u)));
+      if(d.t && TYPE_NAME[d.t]) state.type=d.t;
       if(d.th) state.theme=d.th;
       if(d.v) setFields(d.v);
       state.guestMode=true;
@@ -1099,9 +1224,9 @@ var DEF={
     try{ raw=localStorage.getItem(DRAFT_KEY); }catch(e){}
     if(raw){
       try{
-        var dd=JSON.parse(raw);
+        var dd=migrate(JSON.parse(raw));
         if(dd&&dd.v){ setFields(dd.v); applied=true; }
-        if(dd&&dd.t) state.type=dd.t;
+        if(dd&&dd.t && TYPE_NAME[dd.t]) state.type=dd.t;
         if(dd&&dd.th) state.theme=dd.th;
       }catch(e){}
     }
