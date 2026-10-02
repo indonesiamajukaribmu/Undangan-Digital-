@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Walimatul · Studio Undangan Akikah & Pernikahan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&family=Amiri:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{
+  --bg:#14110d; --panel:#f6f1e4; --panel2:#efe7d3;
+  --line:#e2d8bf; --line2:#d3c6a4;
+  --uink:#241c12; --usoft:#7d6f54;
+  --uaccent:#24382e; --uaccent-h:#1a2b22; --gold:#96702d;
+  --danger:#8e3a3e;
+  --noise:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:Manrope,sans-serif;background:var(--bg);color:var(--uink)}
+[hidden]{display:none!important}
+button{font-family:inherit}
+
+#jsBadge{display:none;position:fixed;left:14px;bottom:14px;z-index:90;align-items:center;gap:8px;background:#1e3b2c;color:#c9ecd6;font:700 11px Manrope;letter-spacing:.08em;padding:8px 13px;border-radius:999px;border:1px solid #3d6a4f;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+#jsBadge i{width:8px;height:8px;border-radius:50%;background:#69d197;animation:blink 1.8s infinite}
+.nojs-banner{display:block;background:#8e3a3e;color:#ffe9e9;font:600 13px Manrope;padding:10px 16px;text-align:center}
+
+.ic{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic-lg{width:20px;height:20px}
+
+.appbar{height:64px;display:flex;align-items:center;gap:18px;padding:0 20px;background:var(--panel);border-bottom:1px solid var(--line2)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .mono{width:34px;height:34px;color:var(--uaccent);flex:none}
+.brand b{display:block;font:400 17px Marcellus;letter-spacing:.34em;color:var(--uink)}
+.brand span{display:block;font:600 9.5px Manrope;letter-spacing:.12em;text-transform:uppercase;color:var(--usoft);margin-top:2px}
+.chip{font:700 10px Manrope;letter-spacing:.16em;text-transform:uppercase;color:var(--uaccent);border:1px solid var(--line2);background:var(--panel2);padding:5px 11px;border-radius:999px}
+.appbar .clock{margin-left:auto;font:600 11.5px Manrope;letter-spacing:.1em;text-transform:uppercase;color:var(--usoft);white-space:nowrap}
+@media (max-width:960px){.appbar .clock{display:none}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 13px Manrope;padding:10px 16px;border-radius:10px;border:1px solid transparent;cursor:pointer;transition:.18s;text-decoration:none}
+.btn-ink{background:var(--uaccent);color:#f2ead6}
+.btn-ink:hover{background:var(--uaccent-h)}
+.btn-ghost{background:transparent;border-color:var(--line2);color:var(--uink)}
+.btn-ghost:hover{background:rgba(0,0,0,.05)}
+.btn-dark{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#e6dcc2}
+.btn-dark:hover{background:rgba(255,255,255,.11)}
+.btn-wa{background:#1f7a4d;color:#eafff3}
+.btn-wa:hover{background:#186a41}
+.btn-sm{padding:8px 12px;font-size:12px}
+.btn-block{width:100%}
+.btn:active{transform:scale(.97)}
+.icon-btn{width:32px;height:32px;display:grid;place-items:center;border:1px solid var(--line2);background:transparent;border-radius:9px;cursor:pointer;color:var(--uink)}
+.icon-btn:hover{background:rgba(0,0,0,.05)}
+
+.workspace{display:grid;grid-template-columns:400px 1fr;height:calc(100vh - 64px)}
+body.guest .workspace{grid-template-columns:1fr}
+body.guest .panel{display:none}
+
+.panel{overflow-y:auto;background:var(--panel);border-right:1px solid var(--line2)}
+.panel::-webkit-scrollbar{width:10px}
+.panel::-webkit-scrollbar-thumb{background:#d8cba7;border-radius:8px;border:3px solid var(--panel)}
+.sec{padding:20px 22px 22px;border-bottom:1px solid var(--line)}
+.sec h3{display:flex;align-items:baseline;gap:10px;font:400 12.5px Marcellus;letter-spacing:.28em;text-transform:uppercase;color:var(--uink);margin:0 0 4px}
+.sec h3 em{font:800 11px Manrope;color:var(--gold);letter-spacing:.08em;font-style:normal}
+.sec .sub{font:500 12.5px/1.5 Manrope;color:var(--usoft);margin:0 0 14px}
+.hint{font:500 11.5px/1.55 Manrope;color:var(--usoft);margin:12px 0 0;padding-left:10px;border-left:2px solid var(--line2)}
+.lbl{font:800 10.5px Manrope;letter-spacing:.14em;text-transform:uppercase;color:var(--usoft);margin:14px 0 8px}
+
+.seg{display:grid;grid-template-columns:1fr 1fr;background:#e9e0c9;border:1px solid var(--line2);border-radius:11px;padding:4px;gap:4px}
+.seg button{font:600 13px Manrope;padding:9px 6px;border-radius:8px;background:transparent;border:0;color:var(--usoft);cursor:pointer;transition:.15s}
+.seg button:hover{color:var(--uink)}
+.seg button.on{background:var(--uaccent);color:#f2ead6;box-shadow:0 2px 8px rgba(20,18,8,.2)}
+.seg button:active{transform:scale(.97)}
+.themes{display:flex;gap:10px}
+.sw{flex:1;background:none;border:0;cursor:pointer;padding:0}
+.sw:active{transform:scale(.97)}
+.sw .tchip{--p:#f8f3e5;--e:#24382e;--a:#96702d;display:block;height:42px;border-radius:9px;background:var(--p);border:1px solid rgba(0,0,0,.18);position:relative;overflow:hidden}
+.sw[data-th="zamrud"] .tchip{--p:#e9eddc;--e:#14352a;--a:#7c5f24}
+.sw[data-th="marun"]  .tchip{--p:#f7ebdf;--e:#4a2027;--a:#a1743a}
+.sw[data-th="malam"]  .tchip{--p:#262119;--e:#14100c;--a:#c8a45c}
+.tchip::before{content:"";position:absolute;top:0;bottom:0;left:0;width:56%;background:var(--e)}
+.tchip::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;background:var(--a);transform:translate(-50%,-50%) rotate(45deg)}
+.sw.on .tchip{outline:2px solid var(--gold);outline-offset:2px}
+.sw>b{display:block;font:700 10px Manrope;letter-spacing:.1em;text-transform:uppercase;color:var(--usoft);margin-top:7px}
+
+.f{margin-bottom:12px}
+.f label{display:block;font:800 10.5px Manrope;letter-spacing:.14em;text-transform:uppercase;color:var(--usoft);margin:0 0 6px}
+.f input,.f select,.f textarea{width:100%;font:500 14px Manrope;color:var(--uink);background:#fffcf3;border:1px solid var(--line2);border-radius:9px;padding:9px 11px;outline:none;transition:.15s;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(150,112,45,.15)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+body[data-type="akikah"] .f-nikah{display:none}
+body[data-type="nikah"]  .f-akikah{display:none}
+
+/* ===== BUKU TAMU (versi aktif) ===== */
+.rs-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.rs-stats div{background:#fffcf3;border:1px solid var(--line2);border-radius:10px;padding:10px 8px;text-align:center}
+.rs-stats b{display:block;font:400 22px Marcellus;color:var(--uink)}
+.rs-stats span{font:700 9px Manrope;letter-spacing:.12em;text-transform:uppercase;color:var(--usoft)}
+.gb-form{background:#efe7d3;border:1px solid var(--line2);border-radius:12px;padding:12px;margin-bottom:14px}
+.gb-form .f{margin-bottom:8px}
+.gb-form .f:last-child{margin-bottom:0}
+.rs-list{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:8px;max-height:280px;overflow:auto}
+.rs-list li{position:relative;background:#fffcf3;border:1px solid var(--line2);border-radius:10px;padding:10px 34px 10px 12px;cursor:pointer;transition:.15s}
+.rs-list li:hover{border-color:var(--gold);background:#fffdf4}
+.rs-list li.editing,.rs-list li.editing:hover{cursor:default;border-color:var(--gold);background:#fffdf4}
+.rs-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rs-top b{font:600 13px Manrope}
+.badge{font:800 9px Manrope;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
+.badge.hadir{background:#2f5d43;color:#eafef2}
+.badge.maaf{background:rgba(142,58,62,.12);color:var(--danger);border:1px solid rgba(142,58,62,.3)}
+.rs-count{font:600 11px Manrope;color:var(--usoft)}
+.rs-list p{margin:5px 0 0;font:italic 500 12.5px/1.45 "Cormorant Garamond";color:#5d5138}
+.rs-del{position:absolute;top:8px;right:8px;width:22px;height:22px;display:grid;place-items:center;border:0;background:transparent;color:var(--usoft);cursor:pointer;border-radius:6px}
+.rs-del:hover{background:rgba(142,58,62,.12);color:var(--danger)}
+.rs-edit{display:grid;gap:8px}
+.rs-edit input,.rs-edit select{width:100%;font:500 13px Manrope;color:var(--uink);background:#fff;border:1px solid var(--line2);border-radius:8px;padding:8px 10px;outline:none}
+.rs-edit input:focus,.rs-edit select:focus{border-color:var(--gold)}
+.rs-edit-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rs-edit-btns{display:flex;gap:8px}
+.rs-empty{font:italic 500 13px "Cormorant Garamond";color:var(--usoft);cursor:default}
+.rs-empty:hover{border-color:var(--line2)!important;background:#fffcf3!important}
+.mini-row{display:flex;gap:8px;margin-top:10px}
+.mini-row .btn{flex:1}
+
+.stage{display:flex;flex-direction:column;min-width:0;background:var(--bg);background-image:var(--noise)}
+.stage-tools{height:54px;display:flex;align-items:center;gap:12px;padding:0 20px;border-bottom:1px solid rgba(255,255,255,.08)}
+.live{display:flex;align-items:center;gap:8px;font:800 10px Manrope;letter-spacing:.26em;text-transform:uppercase;color:#9a8d6c}
+.live i{width:7px;height:7px;border-radius:50%;background:#7fae8f;animation:blink 1.8s infinite}
+@keyframes blink{50%{opacity:.25}}
+.pill{font:600 11.5px Manrope;color:#cfc2a0;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);padding:5px 11px;border-radius:999px;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stage-tools .grow{flex:1}
+.preview-wrap{flex:1;overflow:auto;padding:46px 26px 96px;display:flex;justify-content:center;align-items:flex-start}
+.preview-wrap::-webkit-scrollbar{width:10px}
+.preview-wrap::-webkit-scrollbar-thumb{background:#3a3226;border-radius:8px}
+.statusbar{height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;font:600 11px Manrope;letter-spacing:.04em;color:#8d8163;border-top:1px solid rgba(255,255,255,.08)}
+
+.inv{width:min(680px,100%);display:grid;align-items:start;justify-items:center}
+body.guest .inv{width:min(760px,100%)}
+.inv[data-theme="gading"]{--paper:#f8f3e5;--ink:#2b2114;--soft:#6f5f43;--line:#dccb9f;--accent:#96702d;--env:#24382e;--env2:#1a2b22;--wash:rgba(150,112,45,.08)}
+.inv[data-theme="zamrud"]{--paper:#e9eddc;--ink:#1d3226;--soft:#51685a;--line:#c3cfae;--accent:#7c5f24;--env:#14352a;--env2:#0d2820;--wash:rgba(20,53,42,.07)}
+.inv[data-theme="marun"] {--paper:#f7ebdf;--ink:#3d2126;--soft:#7d5a61;--line:#e2cabb;--accent:#a1743a;--env:#4a2027;--env2:#381719;--wash:rgba(74,32,39,.06)}
+.inv[data-theme="malam"] {--paper:#262119;--ink:#efe6cf;--soft:#b3a582;--line:#4a4030;--accent:#c8a45c;--env:#171310;--env2:#100d0a;--wash:rgba(255,255,255,.05)}
+
+.envelope{position:relative;width:100%;padding-bottom:69%;grid-area:1/1;perspective:1400px}
+@supports (aspect-ratio:1){.envelope{padding-bottom:0;aspect-ratio:680/470}}
+.inv.revealed .envelope{opacity:0;transform:translateY(26px) scale(.98);visibility:hidden;pointer-events:none;transition:opacity .45s,transform .45s,visibility 0s .45s}
+.env-back{position:absolute;inset:0;background:var(--env2);background-image:var(--noise);border-radius:10px;box-shadow:0 34px 80px rgba(0,0,0,.6),0 6px 18px rgba(0,0,0,.45);z-index:1}
+.env-card{position:absolute;left:46px;right:46px;top:30px;bottom:56px;background:var(--paper);background-image:var(--noise);border:1px solid var(--line);z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;color:var(--ink);box-shadow:0 -10px 30px rgba(0,0,0,.3);transition:transform .75s cubic-bezier(.65,0,.25,1)}
+.envelope.lift .env-card{transform:translateY(-46%)}
+.ec-eyebrow{font:800 9.5px Manrope;letter-spacing:.32em;text-transform:uppercase;color:var(--accent)}
+.env-card b{font:italic 600 22px "Cormorant Garamond"}
+.ec-hint{font:italic 400 13px "Cormorant Garamond";color:var(--soft)}
+.env-front{position:absolute;inset:0;background:var(--env);background-image:var(--noise);clip-path:polygon(0 0,50% 46%,100% 0,100% 100%,0 100%);z-index:3;border-radius:10px}
+.env-front::after{content:"";position:absolute;left:50%;bottom:20px;width:8px;height:8px;background:rgba(200,164,92,.45);transform:translateX(-50%) rotate(45deg)}
+.env-front-label{position:absolute;left:0;right:0;top:60%;text-align:center;z-index:3;pointer-events:none}
+.env-front-label span{display:block;font:800 9.5px Manrope;letter-spacing:.34em;text-transform:uppercase;color:rgba(233,223,194,.5);margin-bottom:9px}
+.env-front-label b{font:italic 500 25px "Cormorant Garamond";color:#f0e7cd}
+.env-flap{position:absolute;top:0;left:0;right:0;height:52%;background:var(--env2);background-image:var(--noise);clip-path:polygon(0 0,100% 0,50% 96%);transform-origin:top;z-index:4}
+.envelope.open .env-flap{animation:flapOpen .68s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes flapOpen{0%{transform:rotateX(0);z-index:4}50%{transform:rotateX(90deg);z-index:1}100%{transform:rotateX(180deg);z-index:1}}
+.env-seal{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:88px;height:88px;border:0;cursor:pointer;z-index:7;background:#8e3a3e;border-radius:47% 53% 50% 50%/52% 48% 55% 45%;box-shadow:0 8px 20px rgba(0,0,0,.5),inset 0 2px 6px rgba(255,255,255,.2),inset 0 -8px 14px rgba(0,0,0,.3);transition:transform .2s}
+.env-seal::before{content:"";position:absolute;inset:8px;border:1.5px solid rgba(244,227,196,.55);border-radius:inherit}
+.env-seal::after{content:"";position:absolute;inset:-7px;border:1px solid rgba(242,227,200,.4);border-radius:inherit;animation:sealPulse 2.4s infinite}
+@keyframes sealPulse{0%{transform:scale(.94);opacity:.9}70%{transform:scale(1.12);opacity:0}100%{opacity:0}}
+.env-seal span{font:400 30px Marcellus;color:#f2e3c8}
+.env-seal:hover{transform:translate(-50%,-50%) scale(1.06) rotate(-2deg)}
+.env-seal:active{transform:translate(-50%,-50%) scale(.95)}
+.env-seal.crack{animation:crack .45s forwards;pointer-events:none}
+@keyframes crack{40%{transform:translate(-50%,-50%) scale(1.22) rotate(4deg);opacity:1}100%{transform:translate(-50%,-50%) scale(1.6) rotate(10deg);opacity:0}}
+.env-hint{position:absolute;left:0;right:0;bottom:-48px;text-align:center;font:800 10px Manrope;letter-spacing:.28em;text-transform:uppercase;color:#8d8163;animation:hintFade 2.6s infinite;cursor:pointer;border:0;background:none;padding:6px}
+@keyframes hintFade{50%{opacity:.45}}
+.envelope-frame{position:absolute;inset:0;border:1px solid rgba(200,164,92,.32);border-radius:10px;pointer-events:none;z-index:6}
+
+.letter{grid-area:1/1;width:100%;background:var(--paper);background-image:var(--noise);color:var(--ink);padding:56px 54px 42px;position:relative;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.6),0 5px 16px rgba(0,0,0,.4);display:none}
+.inv.revealed .letter{display:block;animation:letterIn .7s .05s both}
+@keyframes letterIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.letter::before{content:"";position:absolute;inset:14px;border:1px solid var(--line);pointer-events:none}
+.letter::after{content:"";position:absolute;inset:20px;border:1px solid var(--line);opacity:.55;pointer-events:none}
+.corner{position:absolute;width:38px;height:38px;color:var(--accent);z-index:1}
+.c-tl{top:14px;left:14px}.c-tr{top:14px;right:14px;transform:rotate(90deg)}
+.c-bl{bottom:14px;left:14px;transform:rotate(-90deg)}.c-br{bottom:14px;right:14px;transform:rotate(180deg)}
+.bism{font:400 27px/1.4 Amiri;color:var(--accent);margin:8px 0 16px}
+.eyebrow{font:400 15px Marcellus;letter-spacing:.42em;text-transform:uppercase;color:var(--ink);margin:0 0 4px;padding-left:.42em}
+.divider{color:var(--accent);margin:18px auto;width:230px}
+.divider svg{display:block;width:100%}
+.intro{font:italic 500 17px/1.6 "Cormorant Garamond";color:var(--soft);max-width:46ch;margin:6px auto 24px}
+.names{margin:24px 0}
+.script{font:400 48px/1.15 "Pinyon Script";font-size:clamp(42px,6vw,56px);color:var(--ink);margin:6px 0 2px}
+.parents{font:italic 500 16.5px "Cormorant Garamond";color:var(--soft);margin:0}
+.amp{font:400 30px "Pinyon Script";color:var(--accent);margin:12px 0 8px}
+.countdown{margin:30px auto 26px;max-width:460px}
+.countdown.done b{color:var(--accent)}
+.countdown.off{opacity:.55}
+.cd-label{font:800 10.5px Manrope;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+.cd-grid{display:flex;justify-content:center;align-items:flex-start;gap:4px}
+.cd-cell b{display:block;font:400 46px/1 Marcellus;color:var(--ink);min-width:78px;font-variant-numeric:tabular-nums}
+.cd-cell span{display:block;font:800 9px Manrope;letter-spacing:.28em;text-transform:uppercase;color:var(--soft);margin-top:8px}
+.cd-sep{font:400 30px Marcellus;color:var(--line);padding-top:6px}
+.cd-cell b.pop{animation:pop .35s}
+@keyframes pop{0%{opacity:.2;transform:translateY(-7px)}100%{opacity:1;transform:none}}
+.day{font:400 22px Marcellus;color:var(--ink);margin:0 0 7px}
+.times{font:500 16px "Cormorant Garamond";color:var(--soft);margin:0}
+.venue{font:400 18px Marcellus;color:var(--ink);margin:16px 0 0}
+.addr{font:italic 500 15px/1.55 "Cormorant Garamond";color:var(--soft);margin:3px auto 0;max-width:46ch}
+.quote,.doa{margin:30px auto 0;max-width:54ch;font:italic 500 16px/1.7 "Cormorant Garamond";color:var(--soft);padding-top:24px;border-top:1px solid var(--line);position:relative}
+.quote::before,.doa::before{content:"";position:absolute;top:-5px;left:50%;width:9px;height:9px;background:var(--accent);transform:translateX(-50%) rotate(45deg)}
+body[data-type="akikah"] .only-nikah{display:none!important}
+body[data-type="nikah"]  .only-akikah{display:none!important}
+
+.rsvp{margin:36px auto 8px;max-width:450px;border:1px solid var(--line);background:var(--wash);border-radius:14px;padding:22px 22px 20px;text-align:left}
+.rsvp-head{display:flex;gap:12px;align-items:center;color:var(--accent)}
+.rsvp-head h4{font:400 17px Marcellus;letter-spacing:.05em;color:var(--ink);margin:0}
+.rsvp-head p{margin:1px 0 0;font:italic 500 13px "Cormorant Garamond";color:var(--soft)}
+.rsvp form{display:grid;gap:10px;margin-top:16px}
+.rsvp input,.rsvp select{width:100%;font:500 14px Manrope;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:9px;padding:10px 12px;outline:none;transition:.15s}
+.rsvp input::placeholder{color:var(--soft);opacity:.8}
+.rsvp input:focus,.rsvp select:focus{border-color:var(--accent)}
+.rsvp select option{color:#241c12}
+.seg-r{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.seg-r label{cursor:pointer;position:relative}
+.seg-r input{position:absolute;opacity:0;width:0}
+.seg-r span{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border:1px solid var(--line);border-radius:999px;font:600 12.5px Manrope;color:var(--soft);transition:.15s}
+.seg-r span .ic{width:13px;height:13px}
+.seg-r input:checked+span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn-wax{background:var(--accent);color:var(--paper);font:800 13px Manrope;letter-spacing:.05em;padding:12px;border:0;border-radius:10px;cursor:pointer;transition:.18s}
+.btn-wax:hover{filter:brightness(.92)}
+.btn-wax:active{transform:scale(.97)}
+.rsvp-done{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font:italic 500 15.5px/1.5 "Cormorant Garamond";color:var(--ink)}
+.rsvp-done .ic-lg{color:var(--accent);margin-top:2px}
+.rsvp-done button{margin-top:8px;background:none;border:0;padding:0;font:800 10.5px Manrope;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);cursor:pointer;border-bottom:1px solid var(--accent)}
+
+.signoff{margin-top:34px}
+.so-lead{font:italic 500 16px "Cormorant Garamond";color:var(--soft);margin:0}
+.host{font:400 32px/1.2 "Pinyon Script";color:var(--ink);margin:8px 0 0}
+.credit{font:800 9px Manrope;letter-spacing:.3em;text-transform:uppercase;color:var(--soft);opacity:.65;margin:30px 0 0}
+
+.modal-back{position:fixed;inset:0;background:rgba(15,12,8,.62);display:flex;align-items:center;justify-content:center;z-index:60}
+.modal{width:min(580px,92vw);background:var(--panel);border:1px solid var(--line2);border-radius:16px;padding:22px 24px;box-shadow:0 40px 100px rgba(0,0,0,.55)}
+.modal header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.modal h3{display:flex;align-items:center;gap:10px;font:400 14px Marcellus;letter-spacing:.26em;text-transform:uppercase;margin:0}
+.modal h3 .ic{width:16px;height:16px;color:var(--gold)}
+.m-sub{font:500 12.5px/1.55 Manrope;color:var(--usoft);margin:0 0 16px}
+.m-row{display:flex;gap:8px}
+.m-row input{flex:1;font:500 12.5px Manrope;color:var(--uink);background:#fffcf3;border:1px solid var(--line2);border-radius:10px;padding:10px 12px;outline:none;min-width:0}
+.m-grid{display:grid;grid-template-columns:172px 1fr;gap:18px;margin-top:16px;align-items:start}
+.m-qr{background:#fffcf3;border:1px solid var(--line2);border-radius:12px;padding:12px;text-align:center}
+#qrBox{display:flex;justify-content:center;min-height:148px;align-items:center}
+.qr-wait{font:600 11px Manrope;color:var(--usoft)}
+.m-qr>span{display:block;font:700 10px Manrope;letter-spacing:.06em;color:var(--usoft);margin-top:9px}
+.m-actions{display:flex;flex-direction:column;gap:8px}
+.m-actions .btn{justify-content:flex-start}
+@media (max-width:560px){.m-grid{grid-template-columns:1fr}}
+
+.toasts{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;align-items:center;z-index:80;pointer-events:none}
+.toast{display:flex;gap:9px;align-items:center;background:#241c12;color:#f2ead6;font:600 13px Manrope;padding:11px 17px;border-radius:11px;box-shadow:0 14px 34px rgba(0,0,0,.4)}
+.toast .ic{color:#8fc7a3}
+.toast.out{opacity:0;transform:translateY(10px);transition:.3s}
+
+@media (max-width:1180px){.workspace{grid-template-columns:340px 1fr}}
+@media (max-width:900px){
+  .workspace{display:block;height:auto}
+  .panel{border-right:0;border-top:1px solid var(--line2)}
+  .preview-wrap{padding:28px 14px 80px}
+  .letter{padding:44px 26px 36px}
+  .cd-cell b{min-width:56px;font-size:34px}
+}
+@media print{
+  body{background:#fff}
+  .appbar,.panel,.stage-tools,.statusbar,.modal-back,.toasts,.env-hint,#jsBadge{display:none!important}
+  .workspace{display:block;height:auto}
+  .stage{background:#fff;background-image:none}
+  .preview-wrap{padding:0;display:block;overflow:visible}
+  .inv{width:100%!important}
+  .envelope{display:none!important}
+  .letter{display:block!important;box-shadow:none;animation:none;padding:22mm 16mm}
+  .rsvp,.countdown,.credit{display:none!important}
+}
+</style>
+</head>
+<body data-type="nikah">
+
+<noscript><div class="nojs-banner">JavaScript nonaktif di browser Anda — aplikasi ini membutuhkan JavaScript. Gunakan Google Chrome terbaru dan aktifkan JavaScript.</div></noscript>
+<div id="jsBadge"><i></i>Sistem aktif (v4)</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+  <symbol id="i-mail-open" viewBox="0 0 24 24"><path d="M2 10.5V19a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-8.5"/><path d="m2 10 9-6.7a1.7 1.7 0 0 1 2 0L22 10"/><path d="M9.5 13h5"/></symbol>
+  <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="15" x2="12" y2="21"/><line x1="9" y1="18" x2="15" y2="18"/></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+  <symbol id="i-user-plus" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></symbol>
+  <symbol id="i-mail-check" viewBox="0 0 24 24"><path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/><path d="m15.5 19 2 2 4-4"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+</svg>
+
+<header class="appbar">
+  <div class="brand">
+    <svg class="mono" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="20" cy="20" r="18.5"/>
+      <rect x="11.5" y="11.5" width="17" height="17"/>
+      <rect x="11.5" y="11.5" width="17" height="17" transform="rotate(45 20 20)"/>
+    </svg>
+    <div><b>WALIMATUL</b><span>Studio Undangan Akikah &amp; Pernikahan</span></div>
+  </div>
+  <span class="chip" id="modeChip">Penyunting</span>
+  <span class="clock" id="clock"></span>
+  <button type="button" class="btn btn-ghost" id="btnBackStudio" onclick="WA_backStudio()" hidden><svg class="ic"><use href="#i-pencil" xlink:href="#i-pencil"></use></svg> Ubah di Studio</button>
+  <button type="button" class="btn btn-ink" onclick="WA_openShare()"><svg class="ic"><use href="#i-share" xlink:href="#i-share"></use></svg> Sebarkan</button>
+</header>
+
+<div class="workspace">
+
+  <aside class="panel" id="panel">
+    <div class="sec">
+      <h3><em>01</em> Jenis Undangan</h3>
+      <p class="sub" id="typeDesc">Dua keluarga, satu harapan — akad dan resepsi dalam satu rangkaian.</p>
+      <div class="seg" id="segType">
+        <button type="button" data-t="akikah" onclick="WA_pickType('akikah',this)">Akikah</button>
+        <button type="button" data-t="nikah" class="on" onclick="WA_pickType('nikah',this)">Pernikahan</button>
+      </div>
+      <p class="lbl">Tema surat</p>
+      <div class="themes" id="themes">
+        <button type="button" class="sw on" data-th="gading" onclick="WA_pickTheme('gading',this)"><span class="tchip"></span><b>Gading</b></button>
+        <button type="button" class="sw" data-th="zamrud" onclick="WA_pickTheme('zamrud',this)"><span class="tchip"></span><b>Zamrud</b></button>
+        <button type="button" class="sw" data-th="marun" onclick="WA_pickTheme('marun',this)"><span class="tchip"></span><b>Marun</b></button>
+        <button type="button" class="sw" data-th="malam" onclick="WA_pickTheme('malam',this)"><span class="tchip"></span><b>Malam</b></button>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h3><em>02</em> Detail Acara</h3>
+      <div class="f"><label>Tanggal acara</label><input type="date" data-f="c_date"></div>
+      <div class="frow f-nikah">
+        <div class="f"><label>Pukul akad</label><input type="time" data-f="n_akad"></div>
+        <div class="f"><label>Pukul resepsi</label><input type="time" data-f="n_resepsi"></div>
+      </div>
+      <div class="f f-akikah"><label>Pukul acara</label><input type="time" data-f="a_time"></div>
+      <div class="f"><label>Tempat</label><input data-f="c_venue"></div>
+      <div class="f"><label>Alamat lengkap</label><textarea rows="2" data-f="c_addr"></textarea></div>
+
+      <div class="f f-akikah"><label>Nama anak</label><input data-f="a_child"></div>
+      <div class="f f-akikah"><label>Sapaan</label>
+        <select data-f="a_sex"><option value="putri">Putri</option><option value="putra">Putra</option></select>
+      </div>
+      <div class="frow f-akikah">
+        <div class="f"><label>Nama ayah</label><input data-f="a_father"></div>
+        <div class="f"><label>Nama ibu</label><input data-f="a_mother"></div>
+      </div>
+      <div class="f f-akikah"><label>Doa untuk anak</label><textarea rows="3" data-f="a_doa"></textarea></div>
+
+      <div class="f f-nikah"><label>Nama mempelai pria</label><input data-f="n_groom"></div>
+      <div class="frow f-nikah">
+        <div class="f"><label>Putra dari (ayah)</label><input data-f="n_gfather"></div>
+        <div class="f"><label>Nama ibu</label><input data-f="n_gmother"></div>
+      </div>
+      <div class="f f-nikah"><label>Nama mempelai wanita</label><input data-f="n_bride"></div>
+      <div class="frow f-nikah">
+        <div class="f"><label>Putri dari (ayah)</label><input data-f="n_bfather"></div>
+        <div class="f"><label>Nama ibu</label><input data-f="n_bmother"></div>
+      </div>
+      <div class="f f-nikah"><label>Ayat / kutipan</label><textarea rows="4" data-f="n_quote"></textarea></div>
+    </div>
+
+    <div class="sec">
+      <h3><em>03</em> Tamu &amp; Sapaan</h3>
+      <div class="f"><label>Nama tamu (opsional)</label><input data-f="guest" placeholder="cth. Bapak Hendra &amp; Keluarga"></div>
+      <div class="f"><label>Keluarga pengundang</label><input data-f="c_host"></div>
+      <p class="hint">Kosongkan nama tamu sebelum membagikan, agar sapaan pada tautan yang tersebar bersifat umum.</p>
+    </div>
+
+    <!-- ===== BUKU TAMU AKTIF ===== -->
+    <div class="sec">
+      <h3><em>04</em> Buku Tamu</h3>
+      <div class="rs-stats">
+        <div><b id="rsTotal">0</b><span>Konfirmasi</span></div>
+        <div><b id="rsComing">0</b><span>Akan hadir</span></div>
+        <div><b id="rsSeat">0</b><span>Perkiraan kursi</span></div>
+      </div>
+
+      <div class="gb-form">
+        <div class="f"><input id="gbName" placeholder="Nama tamu / keluarga" maxlength="60"></div>
+        <div class="frow">
+          <div class="f"><select id="gbAtt">
+            <option value="hadir">Insya Allah hadir</option>
+            <option value="maaf">Mohon maaf, berhalangan</option>
+          </select></div>
+          <div class="f"><select id="gbCount">
+            <option value="1">1 orang</option><option value="2">2 orang</option><option value="3">3 orang</option>
+            <option value="4">4 orang</option><option value="5">5 orang</option>
+          </select></div>
+        </div>
+        <div class="f"><input id="gbMsg" placeholder="Pesan &amp; doa (opsional)" maxlength="140"></div>
+        <button type="button" class="btn btn-ink btn-block btn-sm" onclick="WA_addGuest()"><svg class="ic"><use href="#i-user-plus" xlink:href="#i-user-plus"></use></svg> Tambah ke Buku Tamu</button>
+      </div>
+
+      <p class="lbl">Daftar tamu <span id="gbN"></span></p>
+      <ul class="rs-list" id="rsList"></ul>
+
+      <div class="mini-row">
+        <button type="button" class="btn btn-ghost btn-sm" onclick="WA_clearRsvp(this)"><svg class="ic"><use href="#i-trash" xlink:href="#i-trash"></use></svg> Bersihkan semua</button>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="WA_exportCsv()"><svg class="ic"><use href="#i-download" xlink:href="#i-download"></use></svg> Unduh CSV</button>
+      </div>
+      <p class="hint"><b>Klik baris tamu</b> untuk mengubah datanya. Konfirmasi yang dikirim tamu lewat surat juga masuk otomatis ke daftar ini.</p>
+    </div>
+
+    <div class="sec">
+      <h3><em>05</em> Sebarkan</h3>
+      <p class="sub">Tautan memuat seluruh isi undangan di dalam URL-nya — terbuka di mana saja, tanpa server.</p>
+      <button type="button" class="btn btn-ink btn-block" onclick="WA_openShare()"><svg class="ic"><use href="#i-share" xlink:href="#i-share"></use></svg> Buka Pusat Bagikan</button>
+      <div class="mini-row">
+        <button type="button" class="btn btn-ghost btn-sm" onclick="WA_shareWA()"><svg class="ic"><use href="#i-wa" xlink:href="#i-wa"></use></svg> WhatsApp</button>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="WA_makeICS()"><svg class="ic"><use href="#i-cal" xlink:href="#i-cal"></use></svg> Kalender</button>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="WA_resetApp(this)"><svg class="ic"><use href="#i-rotate" xlink:href="#i-rotate"></use></svg> Reset</button>
+      </div>
+    </div>
+  </aside>
+
+  <section class="stage">
+    <div class="stage-tools">
+      <span class="live"><i></i>Pratinjau Langsung</span>
+      <span class="pill" id="pillGuest">Tamu: umum</span>
+      <span class="grow"></span>
+      <button type="button" class="btn btn-dark btn-sm" id="tToggle" onclick="WA_toggleSeal()"><svg class="ic"><use href="#i-mail-open" xlink:href="#i-mail-open"></use></svg> <span id="tToggleLbl">Buka Segel</span></button>
+    </div>
+
+    <div class="preview-wrap">
+      <div class="inv" id="inv" data-theme="gading">
+
+        <div class="envelope" id="envBox">
+          <div class="env-back"></div>
+          <div class="env-card">
+            <span class="ec-eyebrow">Undangan Digital</span>
+            <b id="ecGuest">Kepada Yth. Sahabat Terhormat</b>
+            <span class="ec-hint">— pecahkan segel untuk membuka —</span>
+          </div>
+          <div class="env-front"></div>
+          <div class="env-front-label"><span>Kepada Yang Terhormat</span><b id="envGuest">Bapak/Ibu/Saudara/i</b></div>
+          <div class="env-flap"></div>
+          <div class="envelope-frame"></div>
+          <button type="button" class="env-seal" id="envSeal" onclick="WA_openSeal()" title="Pecahkan segel lilin"><span id="sealInit">W</span></button>
+          <button type="button" class="env-hint" onclick="WA_openSeal()">Klik segel lilin untuk membuka</button>
+        </div>
+
+        <article class="letter">
+          <svg class="corner c-tl" viewBox="0 0 40 40" fill="none"><path d="M38 2H16C8.3 2 2 8.3 2 16v22" stroke="currentColor" stroke-width="1.4"/><circle cx="38" cy="2" r="1.7" fill="currentColor"/><circle cx="2" cy="38" r="1.7" fill="currentColor"/></svg>
+          <svg class="corner c-tr" viewBox="0 0 40 40" fill="none"><path d="M38 2H16C8.3 2 2 8.3 2 16v22" stroke="currentColor" stroke-width="1.4"/><circle cx="38" cy="2" r="1.7" fill="currentColor"/><circle cx="2" cy="38" r="1.7" fill="currentColor"/></svg>
+          <svg class="corner c-bl" viewBox="0 0 40 40" fill="none"><path d="M38 2H16C8.3 2 2 8.3 2 16v22" stroke="currentColor" stroke-width="1.4"/><circle cx="38" cy="2" r="1.7" fill="currentColor"/><circle cx="2" cy="38" r="1.7" fill="currentColor"/></svg>
+          <svg class="corner c-br" viewBox="0 0 40 40" fill="none"><path d="M38 2H16C8.3 2 2 8.3 2 16v22" stroke="currentColor" stroke-width="1.4"/><circle cx="38" cy="2" r="1.7" fill="currentColor"/><circle cx="2" cy="38" r="1.7" fill="currentColor"/></svg>
+
+          <p class="bism" lang="ar" dir="rtl">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+          <p class="eyebrow" id="lType">Undangan Pernikahan</p>
+
+          <div class="divider"><svg viewBox="0 0 230 14" fill="none"><line x1="0" y1="7" x2="94" y2="7" stroke="currentColor" stroke-width="1"/><line x1="136" y1="7" x2="230" y2="7" stroke="currentColor" stroke-width="1"/><circle cx="103" cy="7" r="1.4" fill="currentColor"/><circle cx="127" cy="7" r="1.4" fill="currentColor"/><g fill="currentColor"><rect x="111" y="3" width="8" height="8"/><rect x="111" y="3" width="8" height="8" transform="rotate(45 115 7)"/></g></svg></div>
+
+          <p class="intro" id="lIntro"></p>
+
+          <div class="names only-nikah">
+            <h2 class="script" id="lGroom"></h2>
+            <p class="parents" id="lGPar"></p>
+            <div class="amp">&amp;</div>
+            <h2 class="script" id="lBride"></h2>
+            <p class="parents" id="lBPar"></p>
+          </div>
+          <div class="names only-akikah">
+            <h2 class="script" id="lChild"></h2>
+            <p class="parents" id="lChildPar"></p>
+          </div>
+
+          <div class="divider"><svg viewBox="0 0 230 14" fill="none"><line x1="0" y1="7" x2="94" y2="7" stroke="currentColor" stroke-width="1"/><line x1="136" y1="7" x2="230" y2="7" stroke="currentColor" stroke-width="1"/><circle cx="103" cy="7" r="1.4" fill="currentColor"/><circle cx="127" cy="7" r="1.4" fill="currentColor"/><g fill="currentColor"><rect x="111" y="3" width="8" height="8"/><rect x="111" y="3" width="8" height="8" transform="rotate(45 115 7)"/></g></svg></div>
+
+          <section class="countdown" id="cdBox">
+            <p class="cd-label" id="cdLabel">Menghitung Hari Bahagia</p>
+            <div class="cd-grid">
+              <div class="cd-cell"><b id="cdD">—</b><span>Hari</span></div><span class="cd-sep">:</span>
+              <div class="cd-cell"><b id="cdH">—</b><span>Jam</span></div><span class="cd-sep">:</span>
+              <div class="cd-cell"><b id="cdM">—</b><span>Menit</span></div><span class="cd-sep">:</span>
+              <div class="cd-cell"><b id="cdS">—</b><span>Detik</span></div>
+            </div>
+          </section>
+
+          <p class="day" id="lDay"></p>
+          <p class="times only-nikah" id="lTimesN"></p>
+          <p class="times only-akikah" id="lTimesA"></p>
+          <p class="venue" id="lVenue"></p>
+          <p class="addr" id="lAddr"></p>
+
+          <blockquote class="quote only-nikah" id="lQuote" style="margin-left:auto;margin-right:auto"></blockquote>
+          <p class="doa only-akikah" id="lDoa" style="margin-left:auto;margin-right:auto"></p>
+
+          <div class="rsvp">
+            <div class="rsvp-head">
+              <svg class="ic ic-lg"><use href="#i-mail-check" xlink:href="#i-mail-check"></use></svg>
+              <div><h4>Konfirmasi Kehadiran</h4><p>Mohon konfirmasi kehadiran Anda</p></div>
+            </div>
+            <form id="rsvpForm" onsubmit="return WA_submitRsvp(event,this)">
+              <input id="rsvpName" placeholder="Nama Anda" maxlength="60">
+              <div class="seg-r">
+                <label><input type="radio" name="att" value="hadir" checked><span><svg class="ic"><use href="#i-check" xlink:href="#i-check"></use></svg>Insya Allah hadir</span></label>
+                <label><input type="radio" name="att" value="maaf"><span>Mohon maaf, berhalangan</span></label>
+              </div>
+              <select id="rsvpCount">
+                <option value="1">1 orang</option><option value="2">2 orang</option><option value="3">3 orang</option>
+                <option value="4">4 orang</option><option value="5">5 orang</option>
+              </select>
+              <input id="rsvpMsg" placeholder="Pesan &amp; doa (opsional)" maxlength="140">
+              <button type="submit" class="btn-wax">Kirim Konfirmasi</button>
+            </form>
+            <div class="rsvp-done" id="rsvpDone" hidden></div>
+          </div>
+
+          <div class="signoff">
+            <p class="so-lead">Kami yang berbahagia,</p>
+            <p class="host" id="lHost"></p>
+          </div>
+          <p class="credit">Undangan Digital · Walimatul Studio</p>
+        </article>
+      </div>
+    </div>
+
+    <footer class="statusbar">
+      <span id="sbLeft">Pratinjau langsung · perubahan tersimpan otomatis di perangkat ini</span>
+      <span id="sbRight"></span>
+    </footer>
+  </section>
+</div>
+
+<div class="modal-back" id="shareModal" hidden>
+  <div class="modal">
+    <header>
+      <h3><svg class="ic"><use href="#i-share" xlink:href="#i-share"></use></svg> Pusat Bagikan</h3>
+      <button type="button" class="icon-btn" onclick="WA_closeShare()"><svg class="ic"><use href="#i-x" xlink:href="#i-x"></use></button>
+    </header>
+    <p class="m-sub">Seluruh data undangan terbawa dalam tautan ini — penerima membukanya langsung di browser, tanpa server &amp; tanpa pendaftaran.</p>
+    <div class="m-row">
+      <input id="mLink" readonly>
+      <button type="button" class="btn btn-ink" onclick="WA_copyLink()"><svg class="ic"><use href="#i-copy" xlink:href="#i-copy"></use></svg> Salin</button>
+    </div>
+    <div class="m-grid">
+      <div class="m-qr"><div id="qrBox"></div><span>Pindai untuk membuka di ponsel</span></div>
+      <div class="m-actions">
+        <button type="button" class="btn btn-wa" onclick="WA_shareWA()"><svg class="ic"><use href="#i-wa" xlink:href="#i-wa"></use></svg> Bagikan via WhatsApp</button>
+        <button type="button" class="btn btn-ghost" onclick="WA_deviceShare()"><svg class="ic"><use href="#i-send" xlink:href="#i-send"></use></svg> Bagikan via Perangkat</button>
+        <button type="button" class="btn btn-ghost" onclick="WA_makeICS()"><svg class="ic"><use href="#i-cal" xlink:href="#i-cal"></use></svg> Simpan ke Kalender (.ics)</button>
+        <button type="button" class="btn btn-ghost" onclick="WA_printInv()"><svg class="ic"><use href="#i-print" xlink:href="#i-print"></use></svg> Cetak / Simpan PDF</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script>
+/* ============================================================
+   BLOK 1 — INTERAKSI & BUKU TAMU (ES5, onclick langsung)
+   ============================================================ */
+function p2(n){ return (n<10?'0':'')+n; }
+function esc(s){
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function gv(id){ var el=document.getElementById(id); return el? String(el.value).replace(/^\s+|\s+$/g,'') : ''; }
+function toast(msg){
+  var wrap=document.getElementById('toasts'); if(!wrap) return;
+  var el=document.createElement('div');
+  el.className='toast';
+  el.innerHTML='<svg class="ic"><use href="#i-check" xlink:href="#i-check"></use></svg><span>'+esc(msg)+'</span>';
+  wrap.appendChild(el);
+  setTimeout(function(){ el.className='toast out'; setTimeout(function(){ if(el.parentNode) el.parentNode.removeChild(el); },320); },2600);
+}
+
+var state={ type:'nikah', theme:'gading', guestMode:false };
+var DRAFT_KEY='walimatul_draft_v1', RSVP_KEY='walimatul_rsvp_v1';
+var TYPE_DESC={
+  akikah:'Tanda syukur atas kelahiran sang buah hati — tahnik & doa bersama keluarga.',
+  nikah:'Dua keluarga, satu harapan — akad dan resepsi dalam satu rangkaian.'
+};
+
+function fieldEl(f){ return document.querySelector('[data-f="'+f+'"]'); }
+function val(f){ var el=fieldEl(f); return el? String(el.value).replace(/^\s+|\s+$/g,'') : ''; }
+var FIELD_IDS=['guest','c_date','c_venue','c_addr','c_host',
+  'a_child','a_sex','a_father','a_mother','a_time','a_doa',
+  'n_groom','n_gfather','n_gmother','n_bride','n_bfather','n_bmother','n_akad','n_resepsi','n_quote'];
+function setFields(v){
+  for(var i=0;i<FIELD_IDS.length;i++){ var f=FIELD_IDS[i], el=fieldEl(f); if(el&&v&&v[f]!=null) el.value=v[f]; }
+}
+function collect(){
+  var v={};
+  for(var i=0;i<FIELD_IDS.length;i++){ v[FIELD_IDS[i]]=val(FIELD_IDS[i]); }
+  return { t:state.type, th:state.theme, v:v };
+}
+
+/* --- Jenis undangan & tema --- */
+function WA_pickType(t, btn){
+  state.type=t;
+  var btns=document.querySelectorAll('#segType [data-t]');
+  for(var i=0;i<btns.length;i++){ btns[i].className = (btns[i]===btn)?'on':''; }
+  var d=document.getElementById('typeDesc'); if(d) d.textContent=TYPE_DESC[t]||'';
+  document.body.setAttribute('data-type', t);
+  toast('Jenis undangan: '+(t==='akikah'?'Akikah':'Pernikahan'));
+  if(window.render) render();
+}
+function WA_pickTheme(th, btn){
+  state.theme=th;
+  var btns=document.querySelectorAll('#themes .sw');
+  for(var i=0;i<btns.length;i++){ btns[i].className = (btns[i]===btn)?'sw on':'sw'; }
+  var inv=document.getElementById('inv'); if(inv) inv.setAttribute('data-theme', th);
+  toast('Tema surat diganti');
+  if(window.render) render();
+}
+
+/* --- Segel amplop --- */
+var opening=false;
+function WA_openSeal(){
+  var inv=document.getElementById('inv'), box=document.getElementById('envBox'), seal=document.getElementById('envSeal');
+  if(!inv||!box||!seal) return;
+  if(inv.className.indexOf('revealed')>-1 || opening) return;
+  opening=true;
+  seal.className='env-seal crack';
+  setTimeout(function(){ box.className+=' open'; },260);
+  setTimeout(function(){ box.className+=' lift'; },840);
+  setTimeout(function(){ inv.className+=' revealed'; opening=false; updateSealLabel(); },1560);
+}
+function WA_closeSeal(){
+  var inv=document.getElementById('inv'), box=document.getElementById('envBox'), seal=document.getElementById('envSeal');
+  if(inv) inv.className='inv';
+  if(box) box.className='envelope';
+  if(seal) seal.className='env-seal';
+  updateSealLabel();
+}
+function WA_toggleSeal(){
+  var inv=document.getElementById('inv');
+  if(inv && inv.className.indexOf('revealed')>-1) WA_closeSeal(); else WA_openSeal();
+}
+function updateSealLabel(){
+  var inv=document.getElementById('inv'), lbl=document.getElementById('tToggleLbl');
+  if(!lbl) return;
+  var open = inv && inv.className.indexOf('revealed')>-1;
+  lbl.innerHTML = open ? 'Tutup &amp; Segel Ulang' : 'Buka Segel';
+}
+
+/* --- BUKU TAMU: tambah, ubah, hapus, bersihkan, CSV --- */
+function loadRsvps(){ try{ return JSON.parse(localStorage.getItem(RSVP_KEY))||[]; }catch(e){ return []; } }
+function saveRsvps(a){ try{ localStorage.setItem(RSVP_KEY, JSON.stringify(a)); }catch(e){} }
+
+var editingId=null;
+
+function WA_addGuest(){
+  var name=gv('gbName');
+  if(!name){ toast('Tulis dulu nama tamunya'); var el=document.getElementById('gbName'); if(el) el.focus(); return; }
+  var rec={
+    id:(new Date()).getTime(),
+    name:name,
+    att: gv('gbAtt')||'hadir',
+    count: parseInt(gv('gbCount'),10)||1,
+    msg: gv('gbMsg'),
+    ts:(new Date()).getTime(),
+    src:'panel'
+  };
+  var rs=loadRsvps(); rs.push(rec); saveRsvps(rs);
+  document.getElementById('gbName').value='';
+  document.getElementById('gbMsg').value='';
+  document.getElementById('gbCount').value='1';
+  editingId=null;
+  WA_renderRsvpPanel();
+  if(window.buildLink) buildLink();
+  toast('Tamu ditambahkan: '+name);
+}
+
+function WA_editRsvp(id){ editingId=id; WA_renderRsvpPanel(); }
+function WA_cancelEdit(){ editingId=null; WA_renderRsvpPanel(); }
+
+function WA_saveRsvpEdit(id){
+  var rs=loadRsvps();
+  for(var i=0;i<rs.length;i++){
+    if(String(rs[i].id)===String(id)){
+      var nm=gv('edName_'+id);
+      if(nm) rs[i].name=nm;
+      rs[i].att = gv('edAtt_'+id)||rs[i].att;
+      rs[i].count = parseInt(gv('edCount_'+id),10)||rs[i].count||1;
+      rs[i].msg = gv('edMsg_'+id);
+    }
+  }
+  saveRsvps(rs);
+  editingId=null;
+  WA_renderRsvpPanel();
+  if(window.buildLink) buildLink();
+  toast('Perubahan tamu disimpan');
+}
+
+function WA_delRsvp(id){
+  var rs=loadRsvps(), out=[], i;
+  for(i=0;i<rs.length;i++){ if(String(rs[i].id)!==String(id)) out.push(rs[i]); }
+  saveRsvps(out);
+  if(String(editingId)===String(id)) editingId=null;
+  WA_renderRsvpPanel();
+  if(window.buildLink) buildLink();
+  toast('Entri dihapus');
+}
+
+function WA_clearRsvp(btn){
+  var rs=loadRsvps();
+  if(!rs.length){ toast('Buku tamu masih kosong'); return; }
+  if(btn.getAttribute('data-armed')==='1'){
+    btn.removeAttribute('data-armed');
+    if(btn.getAttribute('data-keep')){ btn.innerHTML=btn.getAttribute('data-keep'); btn.removeAttribute('data-keep'); }
+    saveRsvps([]); editingId=null;
+    WA_renderRsvpPanel();
+    if(window.buildLink) buildLink();
+    toast('Buku tamu dibersihkan');
+  } else {
+    btn.setAttribute('data-armed','1');
+    btn.setAttribute('data-keep', btn.innerHTML);
+    btn.textContent='Yakin? Klik sekali lagi';
+    setTimeout(function(){
+      if(btn.getAttribute('data-armed')==='1'){
+        btn.removeAttribute('data-armed');
+        if(btn.getAttribute('data-keep')){ btn.innerHTML=btn.getAttribute('data-keep'); btn.removeAttribute('data-keep'); }
+      }
+    },2600);
+  }
+}
+
+function WA_exportCsv(){
+  var rs=loadRsvps();
+  if(!rs.length){ toast('Belum ada data untuk diunduh'); return; }
+  function fmtTs(ts){ var d=new Date(ts); return p2(d.getDate())+'/'+p2(d.getMonth()+1)+'/'+d.getFullYear()+' '+p2(d.getHours())+':'+p2(d.getMinutes()); }
+  var rows=[['Nama','Status','Jumlah','Pesan','Waktu']];
+  for(var i=0;i<rs.length;i++){
+    rows.push([rs[i].name, rs[i].att==='hadir'?'Hadir':'Berhalangan', rs[i].count||1, rs[i].msg||'', fmtTs(rs[i].ts||rs[i].id)]);
+  }
+  var lines=[];
+  for(i=0;i<rows.length;i++){
+    var cells=[];
+    for(var j=0;j<rows[i].length;j++){
+      cells.push('"'+String(rows[i][j]).replace(/"/g,'""').replace(/\n/g,' ')+'"');
+    }
+    lines.push(cells.join(';'));
+  }
+  var csv='\uFEFF'+lines.join('\r\n');
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download='buku-tamu-walimatul.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(a.href); },4000);
+  toast('Buku tamu diunduh (CSV)');
+}
+
+function countOpts(sel){
+  var out='';
+  for(var k=1;k<=5;k++){ out+='<option value="'+k+'"'+(k===sel?' selected':'')+'>'+k+' orang</option>'; }
+  return out;
+}
+
+function WA_renderRsvpPanel(){
+  var rs=loadRsvps(), coming=[], i, sum=0;
+  for(i=0;i<rs.length;i++){ if(rs[i].att==='hadir') coming.push(rs[i]); }
+  for(i=0;i<coming.length;i++){ sum += (coming[i].count||1); }
+  var e1=document.getElementById('rsTotal'), e2=document.getElementById('rsComing'), e3=document.getElementById('rsSeat');
+  if(e1) e1.textContent=rs.length;
+  if(e2) e2.textContent=coming.length;
+  if(e3) e3.textContent=sum;
+  var nEl=document.getElementById('gbN');
+  if(nEl) nEl.textContent = rs.length? '('+rs.length+')' : '';
+
+  var ul=document.getElementById('rsList'); if(!ul) return;
+  if(!rs.length){
+    ul.innerHTML='<li class="rs-empty" style="border:1px dashed var(--line2);background:none;text-align:center;padding:16px 12px">Belum ada tamu.<br>Tambahkan lewat formulir di atas, atau bagikan undangannya — konfirmasi tamu akan masuk ke sini otomatis.</li>';
+    return;
+  }
+  var html='';
+  for(i=rs.length-1;i>=0;i--){
+    var r=rs[i];
+    if(editingId!=null && String(r.id)===String(editingId)){
+      html+='<li class="editing">'
+        +'<div class="rs-edit">'
+        +'<input id="edName_'+r.id+'" value="'+esc(r.name)+'" maxlength="60">'
+        +'<div class="rs-edit-row">'
+        +'<select id="edAtt_'+r.id+'"><option value="hadir"'+(r.att==='hadir'?' selected':'')+'>Insya Allah hadir</option><option value="maaf"'+(r.att==='maaf'?' selected':'')+'>Berhalangan</option></select>'
+        +'<select id="edCount_'+r.id+'">'+countOpts(r.count||1)+'</select>'
+        +'</div>'
+        +'<input id="edMsg_'+r.id+'" value="'+esc(r.msg||'')+'" maxlength="140" placeholder="Pesan & doa (opsional)">'
+        +'<div class="rs-edit-btns">'
+        +'<button type="button" class="btn btn-ink btn-sm" onclick="WA_saveRsvpEdit('+r.id+')">Simpan</button>'
+        +'<button type="button" class="btn btn-ghost btn-sm" onclick="WA_cancelEdit()">Batal</button>'
+        +'</div>'
+        +'</div></li>';
+    } else {
+      html+='<li title="Klik untuk mengubah tamu ini" onclick="WA_editRsvp('+r.id+')">'
+        +'<div class="rs-top"><b>'+esc(r.name)+'</b><span class="badge '+esc(r.att)+'">'+(r.att==='hadir'?'Hadir':'Berhalangan')+'</span></div>'
+        +(r.att==='hadir'&&r.count>1?'<span class="rs-count">'+r.count+' orang</span>':'')
+        +(r.msg?'<p>\u201C'+esc(r.msg)+'\u201D</p>':'')
+        +'<button type="button" class="rs-del" title="Hapus" onclick="event.stopPropagation();WA_delRsvp('+r.id+')"><svg class="ic"><use href="#i-x" xlink:href="#i-x"></use></svg></button>'
+        +'</li>';
+    }
+  }
+  ul.innerHTML=html;
+}
+
+function WA_resetApp(btn){
+  if(btn.getAttribute('data-armed')==='1'){
+    btn.removeAttribute('data-armed');
+    try{ localStorage.removeItem(DRAFT_KEY); }catch(e){}
+    location.href=location.pathname;
+  } else {
+    btn.setAttribute('data-armed','1');
+    btn.setAttribute('data-keep', btn.innerHTML);
+    btn.textContent='Yakin? Klik sekali lagi';
+    setTimeout(function(){
+      if(btn.getAttribute('data-armed')==='1'){
+        btn.removeAttribute('data-armed');
+        if(btn.getAttribute('data-keep')){ btn.innerHTML=btn.getAttribute('data-keep'); btn.removeAttribute('data-keep'); }
+      }
+    },2600);
+  }
+}
+function WA_rsvpAgain(){
+  var f=document.getElementById('rsvpForm'); if(f) f.removeAttribute('hidden');
+  var d=document.getElementById('rsvpDone'); if(d) d.setAttribute('hidden','');
+}
+function WA_submitRsvp(ev, form){
+  if(ev && ev.preventDefault) ev.preventDefault();
+  var name=gv('rsvpName');
+  if(!name){ toast('Isi nama Anda terlebih dahulu'); var ne=document.getElementById('rsvpName'); if(ne) ne.focus(); return false; }
+  var att='hadir', inputs=form.getElementsByTagName('input'), i;
+  for(i=0;i<inputs.length;i++){ if(inputs[i].name==='att' && inputs[i].checked) att=inputs[i].value; }
+  var cEl=document.getElementById('rsvpCount');
+  var rec={ id:(new Date()).getTime(), name:name, att:att,
+    count: cEl? (parseInt(cEl.value,10)||1) : 1,
+    msg: gv('rsvpMsg'), ts:(new Date()).getTime(), src:'surat' };
+  var rs=loadRsvps(); rs.push(rec); saveRsvps(rs);
+  form.setAttribute('hidden','');
+  var done=document.getElementById('rsvpDone');
+  if(done){
+    done.innerHTML='<svg class="ic ic-lg"><use href="#i-check-circle" xlink:href="#i-check-circle"></use></svg><div>'
+      +(att==='hadir'
+        ? 'Jazakumullahu khairan, <b>'+esc(name)+'</b>! Kehadiran Anda ('+rec.count+' orang) telah kami catat. Sampai jumpa di hari bahagia.'
+        : 'Terima kasih, <b>'+esc(name)+'</b>. Doa terbaik Anda sudah lebih dari cukup bagi kami.')
+      +'<br><button type="button" onclick="WA_rsvpAgain()">Perbarui jawaban</button></div>';
+    done.removeAttribute('hidden');
+  }
+  form.reset();
+  WA_renderRsvpPanel();
+  if(window.buildLink) buildLink();
+  toast('Konfirmasi terkirim — masuk ke Buku Tamu');
+  return false;
+}
+
+/* --- Jam --- */
+var HARI=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+var BULAN=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+function clockTick(){
+  var d=new Date(), el=document.getElementById('clock'); if(!el) return;
+  el.textContent=HARI[d.getDay()]+', '+d.getDate()+' '+BULAN[d.getMonth()]+' \u00B7 '+p2(d.getHours())+':'+p2(d.getMinutes())+':'+p2(d.getSeconds());
+}
+
+/* Ikat kolom form ke pratinjau langsung + tampilkan lencana diagnosis */
+(function(){
+  try{
+    var fields=document.querySelectorAll('[data-f]');
+    function onChange(){ if(window.render) render(); }
+    for(var i=0;i<fields.length;i++){ fields[i].oninput=onChange; fields[i].onchange=onChange; }
+  }catch(e){}
+  clockTick(); setInterval(clockTick,1000);
+  var b=document.getElementById('jsBadge');
+  if(b) b.style.display='flex';
+})();
+</script>
+
+<script>
+/* ============================================================
+   BLOK 2 — RENDER SURAT, HITUNG MUNDUR, BAGIKAN (ES5)
+   ============================================================ */
+function fmtT(t){ return t? t.split(':').join('.') : '\u2014'; }
+function setTxt(id, s){ var el=document.getElementById(id); if(el) el.textContent=s; }
+
+function dayText(){
+  var d=val('c_date'); if(!d) return '\u2014';
+  var p=d.split('-');
+  var dt=new Date(parseInt(p[0],10), parseInt(p[1],10)-1, parseInt(p[2],10));
+  if(isNaN(dt.getTime())) return '\u2014';
+  return HARI[dt.getDay()]+', '+dt.getDate()+' '+BULAN[dt.getMonth()]+' '+dt.getFullYear();
+}
+function mainTime(){ return state.type==='akikah' ? (val('a_time')||'09:00') : (val('n_akad')||'08:00'); }
+function getTarget(){
+  var d=val('c_date'); if(!d) return null;
+  var t=new Date(d+'T'+mainTime());
+  return isNaN(t.getTime())? null : t;
+}
+function sealInitials(){
+  var s = state.type==='akikah' ? val('a_child') : (val('n_groom')+' '+val('n_bride'));
+  var w=s.split(/\s+/), out='';
+  for(var i=0;i<w.length && i<2;i++){ if(w[i]) out+=w[i].charAt(0); }
+  return (out||'W').toUpperCase();
+}
+
+function render(){
+  var inv=document.getElementById('inv');
+  document.body.setAttribute('data-type', state.type);
+  if(inv) inv.setAttribute('data-theme', state.theme);
+  var g=val('guest');
+  setTxt('envGuest', g||'Bapak/Ibu/Saudara/i');
+  setTxt('ecGuest', 'Kepada Yth. '+(g||'Sahabat Terhormat'));
+  setTxt('sealInit', sealInitials());
+  setTxt('pillGuest', 'Tamu: '+(g||'umum'));
+  if(state.type==='akikah'){
+    setTxt('lType','Undangan Akikah');
+    setTxt('lIntro','Alhamdulillah, dengan penuh rasa syukur atas karunia-Nya, kami bermaksud menyelenggarakan syukuran akikah putra/putri tercinta kami:');
+    setTxt('lChild', val('a_child')||'\u2014');
+    setTxt('lChildPar', (val('a_sex')==='putra'?'Putra':'Putri')+' tercinta dari pasangan Bapak '+(val('a_father')||'\u2014')+' & Ibu '+(val('a_mother')||'\u2014'));
+    setTxt('lTimesA','bertempat pada pukul '+fmtT(val('a_time'))+' \u2014 hingga selesai');
+    setTxt('lDoa', val('a_doa'));
+  } else {
+    setTxt('lType','Undangan Pernikahan');
+    setTxt('lIntro','Dengan memohon rahmat dan ridha Allah Subhanahu wa Ta\u2019ala, kami bermaksud menyelenggarakan pernikahan putra-putri kami:');
+    setTxt('lGroom', val('n_groom')||'\u2014');
+    setTxt('lGPar','Putra dari Bapak '+(val('n_gfather')||'\u2014')+' & Ibu '+(val('n_gmother')||'\u2014'));
+    setTxt('lBride', val('n_bride')||'\u2014');
+    setTxt('lBPar','Putri dari Bapak '+(val('n_bfather')||'\u2014')+' & Ibu '+(val('n_bmother')||'\u2014'));
+    setTxt('lTimesN','Akad pukul '+fmtT(val('n_akad'))+' \u00B7 Resepsi pukul '+fmtT(val('n_resepsi'))+' \u2014 hingga selesai');
+    setTxt('lQuote', val('n_quote'));
+  }
+  setTxt('lDay', dayText());
+  setTxt('lVenue', val('c_venue')||'\u2014');
+  setTxt('lAddr', val('c_addr'));
+  setTxt('lHost', val('c_host')||'\u2014');
+  buildLink(); saveDraft();
+}
+
+function b64e(s){ return btoa(unescape(encodeURIComponent(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); }
+function b64d(s){ return decodeURIComponent(escape(atob(s.replace(/-/g,'+').replace(/_/g,'/')))); }
+var LINK='';
+function buildLink(){
+  var base=location.href.split('?')[0].split('#')[0];
+  try{ LINK=base+'?u='+b64e(JSON.stringify(collect())); }catch(e){ LINK=base; }
+  var m=document.getElementById('mLink'); if(m) m.value=LINK;
+  var sb=document.getElementById('sbRight');
+  if(sb) sb.textContent='Tautan '+LINK.length+' karakter \u00B7 '+loadRsvps().length+' konfirmasi RSVP';
+}
+var saveDraftTimer=null;
+function saveDraft(){
+  if(saveDraftTimer) clearTimeout(saveDraftTimer);
+  saveDraftTimer=setTimeout(function(){
+    try{ localStorage.setItem(DRAFT_KEY, JSON.stringify(collect())); }catch(e){}
+  },400);
+}
+
+var lastCd='';
+function tick(){
+  var tg=getTarget(), box=document.getElementById('cdBox'); if(!box) return;
+  if(!tg){ setCd('\u2014','\u2014','\u2014','\u2014'); setTxt('cdLabel','Atur tanggal acara pada panel'); box.className='countdown off'; return; }
+  var diff=tg.getTime()-(new Date()).getTime();
+  if(diff<=0){ setCd('0','0','0','0'); setTxt('cdLabel','Alhamdulillah, acara telah berlangsung'); box.className='countdown done'; return; }
+  box.className='countdown';
+  setTxt('cdLabel','Menghitung Hari Bahagia');
+  var d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000), m=Math.floor(diff%3600000/60000), s=Math.floor(diff%60000/1000);
+  setCd(String(d), p2(h), p2(m), p2(s));
+}
+function setCd(d,h,m,s){
+  var key=d+'|'+h+'|'+m+'|'+s; if(key===lastCd) return; lastCd=key;
+  var ids=['cdD','cdH','cdM','cdS'], vals=[d,h,m,s];
+  for(var i=0;i<ids.length;i++){
+    var el=document.getElementById(ids[i]); if(!el) continue;
+    el.className=''; void el.offsetWidth; el.className='pop';
+    el.textContent=vals[i];
+  }
+}
+
+function waText(){
+  var link=LINK;
+  if(state.type==='akikah'){
+    return "Assalamu'alaikum warahmatullahi wabarakatuh.\n\nDengan penuh rasa syukur kepada Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri syukuran akikah putra/putri kami, "+(val('a_child')||'\u2014')+", insya Allah pada "+dayText()+", pukul "+fmtT(val('a_time'))+", bertempat di "+(val('c_venue')||'\u2014')+(val('c_addr')?', '+val('c_addr'):'')+".\n\nBuka undangan digital lengkap melalui tautan berikut:\n"+link+"\n\nMerupakan suatu kehormatan apabila Anda berkenan hadir memberikan doa restu. Terima kasih.";
+  }
+  return "Assalamu'alaikum warahmatullahi wabarakatuh.\n\nDengan memohon rahmat dan ridha Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami:\n\n"+(val('n_groom')||'\u2014')+' & '+(val('n_bride')||'\u2014')+"\n"+dayText()+' \u00B7 pukul '+fmtT(val('n_akad'))+"\n"+(val('c_venue')||'\u2014')+(val('c_addr')?', '+val('c_addr'):'')+"\n\nBuka undangan digital lengkap melalui tautan berikut:\n"+link+"\n\nMerupakan suatu kehormatan apabila Anda berkenan hadir memberikan doa restu. Terima kasih.";
+}
+function WA_shareWA(){ window.open('https://wa.me/?text='+encodeURIComponent(waText()),'_blank'); }
+function fallbackCopy(s){
+  var ta=document.createElement('textarea'); ta.value=s;
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); }catch(e){}
+  document.body.removeChild(ta);
+}
+function WA_copyLink(){
+  var done=function(){ toast('Tautan undangan tersalin'); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(LINK).then(done, function(){ fallbackCopy(LINK); done(); });
+  } else { fallbackCopy(LINK); done(); }
+}
+function WA_deviceShare(){
+  if(navigator.share){ try{ navigator.share({title:'Undangan Digital', text:waText(), url:LINK}); }catch(e){} }
+  else { fallbackCopy(LINK); toast('Berbagi langsung tak didukung \u2014 tautan tersalin'); }
+}
+function WA_makeICS(){
+  var tg=getTarget();
+  if(!tg){ toast('Isi tanggal acara terlebih dahulu'); return; }
+  var end=new Date(tg.getTime()+3*3600000);
+  function f(d){ return ''+d.getFullYear()+p2(d.getMonth()+1)+p2(d.getDate())+'T'+p2(d.getHours())+p2(d.getMinutes())+'00'; }
+  function t(x){ return String(x==null?'':x).replace(/,/g,'\\,').replace(/;/g,'\\;'); }
+  var title = state.type==='akikah' ? ('Akikah '+val('a_child')) : ('Pernikahan '+val('n_groom')+' & '+val('n_bride'));
+  var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Walimatul//Undangan Digital//ID','CALSCALE:GREGORIAN','BEGIN:VEVENT',
+    'UID:'+(new Date()).getTime()+'@walimatul','DTSTAMP:'+f(new Date()),'DTSTART:'+f(tg),'DTEND:'+f(end),
+    'SUMMARY:'+t(title),'LOCATION:'+t(val('c_venue')+', '+val('c_addr')),
+    'DESCRIPTION:'+t(waText()).replace(/\n/g,'\\n'),'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));
+  a.download='undangan-walimatul.ics';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(a.href); },4000);
+  toast('Berkas kalender diunduh');
+}
+function WA_printInv(){
+  WA_closeShare();
+  var inv=document.getElementById('inv');
+  if(inv && inv.className.indexOf('revealed')<0) inv.className+=' revealed';
+  setTimeout(function(){ window.print(); },150);
+}
+
+var qrTries=0;
+function drawQR(){
+  var box=document.getElementById('qrBox'); if(!box) return;
+  box.innerHTML='';
+  if(typeof QRCode==='undefined'){
+    box.innerHTML='<span class="qr-wait">Memuat QR\u2026</span>';
+    qrTries++;
+    if(qrTries<4) setTimeout(function(){
+      var m=document.getElementById('shareModal');
+      if(m && !m.hasAttribute('hidden') && typeof QRCode!=='undefined') drawQR();
+      else if(qrTries>=4) box.innerHTML='<span class="qr-wait">QR tak tersedia (luring)</span>';
+    },700);
+    return;
+  }
+  try{ new QRCode(box,{text:LINK,width:148,height:148,colorDark:'#241c12',colorLight:'#fffcf3',correctLevel:QRCode.CorrectLevel.M}); }catch(e){}
+}
+function WA_openShare(){ buildLink(); qrTries=0; drawQR(); var m=document.getElementById('shareModal'); if(m) m.removeAttribute('hidden'); }
+function WA_closeShare(){ var m=document.getElementById('shareModal'); if(m) m.setAttribute('hidden',''); }
+
+function WA_backStudio(){
+  if(location.search){ location.href=location.pathname; return; }
+  state.guestMode=false;
+  document.body.className=document.body.className.replace(/(^|\s)guest(\s|$)/g,' ');
+  var b=document.getElementById('btnBackStudio'); if(b) b.setAttribute('hidden','');
+  setTxt('modeChip','Penyunting');
+  setTxt('sbLeft','Pratinjau langsung \u00B7 perubahan tersimpan otomatis di perangkat ini');
+  toast('Kembali ke mode penyunting');
+}
+
+(function(){
+  var m=document.getElementById('shareModal');
+  if(m) m.onclick=function(e){ if(e.target===m) WA_closeShare(); };
+  document.onkeydown=function(e){ e=e||window.event; var k=e.key||''; if(k==='Escape'||e.keyCode===27) WA_closeShare(); };
+})();
+
+function getParam(name){
+  var q=location.search.substring(1); if(!q) return null;
+  var parts=q.split('&');
+  for(var i=0;i<parts.length;i++){
+    var kv=parts[i].split('=');
+    if(decodeURIComponent(kv[0])===name) return decodeURIComponent((kv[1]||'').replace(/\+/g,'%20'));
+  }
+  return null;
+}
+
+var ftur=new Date(); ftur.setTime((new Date()).getTime()+9*86400000);
+var DEF={
+  guest:'',
+  c_date: ftur.getFullYear()+'-'+p2(ftur.getMonth()+1)+'-'+p2(ftur.getDate()),
+  c_venue:'Pendopo Agung Taman Sari', c_addr:'Jl. Cempaka No. 12, Yogyakarta',
+  c_host:'Keluarga Besar Wijaya & Maheswara',
+  a_child:'Aisyah Nur Ramadhani', a_sex:'putri', a_father:'Ahmad Fauzi, S.Pd.', a_mother:'Siti Rahma', a_time:'09:00',
+  a_doa:'Ya Allah, jadikanlah anak kami sholeh/sholehah, penyejuk mata kedua orang tua, dan berkahilah ia di dunia dan akhirat. Aamiin yaa Rabbal \u2018aalamiin.',
+  n_groom:'Raka Adiwangsa', n_gfather:'Hendra Wijaya', n_gmother:'Ratna Sari',
+  n_bride:'Kirana Maheswari', n_bfather:'Dedi Maheswara', n_bmother:"Lestari Nur'aini",
+  n_akad:'08:00', n_resepsi:'11:00',
+  n_quote:'\u201CDan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.\u201D \u2014 QS. Ar-R\u016Bm : 21'
+};
+
+(function init(){
+  tick(); setInterval(tick,300);
+  var u=getParam('u');
+  if(u){
+    try{
+      var d=JSON.parse(b64d(u));
+      if(d.t) state.type=d.t;
+      if(d.th) state.theme=d.th;
+      if(d.v) setFields(d.v);
+      state.guestMode=true;
+    }catch(e){ toast('Tautan tidak valid \u2014 membuka studio'); }
+  } else {
+    var applied=false, raw=null;
+    try{ raw=localStorage.getItem(DRAFT_KEY); }catch(e){}
+    if(raw){
+      try{
+        var dd=JSON.parse(raw);
+        if(dd&&dd.v){ setFields(dd.v); applied=true; }
+        if(dd&&dd.t) state.type=dd.t;
+        if(dd&&dd.th) state.theme=dd.th;
+      }catch(e){}
+    }
+    if(!applied) setFields(DEF);
+  }
+  if(state.guestMode){
+    document.body.className+=' guest';
+    var bb=document.getElementById('btnBackStudio'); if(bb) bb.removeAttribute('hidden');
+    setTxt('modeChip','Mode Tamu');
+    setTxt('sbLeft','Mode Tamu \u00B7 tekan segel lilin untuk membuka undangan');
+  }
+  var btns=document.querySelectorAll('#segType [data-t]');
+  for(var i=0;i<btns.length;i++) btns[i].className = (btns[i].getAttribute('data-t')===state.type)?'on':'';
+  var sws=document.querySelectorAll('#themes .sw');
+  for(i=0;i<sws.length;i++) sws[i].className = (sws[i].getAttribute('data-th')===state.theme)?'sw on':'sw';
+  setTxt('typeDesc', TYPE_DESC[state.type]||'');
+  render(); WA_renderRsvpPanel(); updateSealLabel();
+})();
+</script>
+</body>
+</html>
